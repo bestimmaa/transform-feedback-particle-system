@@ -3,7 +3,9 @@ CGFramework
 
 ##Linux
 
-Open the CGFramwork.workspace in /linux with Code::Blocks
+Open the CGFramwork.workspace in /linux with Code::Blocks. This workspace contains two projects: The framework itself (CGFramework) and the gloost library (gloost).
+
+Make sure you are running the latest (proprietary) drivers for your graphics card for full OpenGL 3.2 support. 
 
 ###Dependencies
 
