@@ -1,6 +1,14 @@
 CGFramework
 ===========
 
+Computer Graphhics - Winter course 2013 / 2014 - Bauhaus University Weimar
+
+This is the framework used for the assigments. A version for Visual Studio on Winwows is can be downloaded at the [website of the course](http://www.uni-weimar.de/de/medien/professuren/grafische-datenverarbeitung/lehre/computergrafik/). 
+
+#Structure of the framework
+
+The framework provides some boiler plate code for setting up OpenGL and some basic shaders. In addition there is the gloost library included to provide functionality for mathematics and object loading. All source files are in the /src subdirectory. The gloost library is included in /dependencies and is supposed to be build in the /lib sudirectory. The provided projects take care of building gloost. You can use a different IDE or makefile by pointing it to the folders /src and /dependencies. In this case you have to take care of building gloost yourself.
+
 ##Linux
 
 Open the CGFramwork.workspace in /linux with Code::Blocks. The workspace contains two projects: The framework itself (CGFramework) and the gloost library (gloost).
@@ -41,3 +49,10 @@ Add all ressource files in the corresponding section of "Build Phases" of Xcode'
 ###Common problems
 
 * "error: failed to launch '/Users/.../Build/Products/Debug/OpenGLFramework' -- invalid host string: 'localhost'" -> See this [question]() on StackOverflow for a solution
+
+##What you should see
+
+A red sphere. Rendered on your GPU. 
+
+
+
