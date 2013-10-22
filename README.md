@@ -3,6 +3,8 @@ CGFramework
 
 ##Linux
 
+Open the CGFramwork.workspace in /linux with Code::Blocks
+
 ###Dependencies
 
 sudo apt-get install freeglut3
@@ -18,6 +20,8 @@ Add all ressource files (objects, shaders, textures...) to /linux/CGFramework/co
 
 ##Mac OS X
 
+Open the CGFramwork.xcodeproj in /mac
+
 ##Dependencies
 
 Install the dependencies via homebrew
@@ -27,4 +31,4 @@ Install the dependencies via homebrew
 
 ###Ressources
 
-Add all ressource files in the corresponding section of "Build Phases"
+Add all ressource files in the corresponding section of "Build Phases" of Xcode
