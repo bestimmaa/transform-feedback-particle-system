@@ -7,6 +7,8 @@ Open the CGFramwork.workspace in /linux with Code::Blocks. This workspace contai
 
 Make sure you are running the latest (proprietary) drivers for your graphics card for full OpenGL 3.2 support. 
 
+Tested with Ubuntu 12.04 and Nvidia 319 drivers.
+
 ###Dependencies
 
 Install dependencies via apt-get
@@ -19,7 +21,9 @@ Add all ressource files (objects, shaders, textures...) to /linux/CGFramework/co
 
 ##Mac OS X
 
-Open the CGFramwork.xcodeproj in /mac with Xcode
+Open the CGFramwork.xcodeproj in /mac with Xcode.
+
+*Please note that Apple's GLUT implementation is used instead of FreeGLUT. FreeGLUT does not support OpenGL 3.2 on OS X. This is where the ugly IFDEF come from.*
 
 ##Dependencies
 
