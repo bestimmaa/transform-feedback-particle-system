@@ -1,8 +1,6 @@
 CGFramework
 ===========
 
-This is the framework used in the winter term 
-
 ##Linux
 
 Open the CGFramwork.workspace in /linux with Code::Blocks. The workspace contains two projects: The framework itself (CGFramework) and the gloost library (gloost).
