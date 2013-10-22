@@ -1,0 +1,446 @@
+# depslib dependency file v1.0
+1382387925 source:/home/hali/work/cg_framework/src/model_obj.cpp
+	"model_obj.h"
+	<limits>
+	<fstream>
+	<string.h>
+	<algorithm>
+	<cmath>
+
+1382387925 /home/hali/work/cg_framework/src/model_obj.h
+	<string>
+	<vector>
+	<map>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/BitMask.cpp
+	<BitMask.h>
+	<string>
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/BitMask.h
+	<string>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/BoundingBox.cpp
+	<BoundingBox.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/BoundingBox.h
+	<BoundingVolume.h>
+	<Vector3.h>
+	<Matrix.h>
+	<Point3.h>
+	<Ray.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/BoundingVolume.h
+	<Matrix.h>
+	<Frustum.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Matrix.h
+	<gloostConfig.h>
+	<iostream>
+	<cstdlib>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/gloostConfig.h
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Frustum.h
+	<Point3.h>
+	<Matrix.h>
+	<Plane.h>
+	<string>
+	<vector>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Point3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Plane.h
+	<Point3.h>
+	<Vector3.h>
+	<string>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Vector3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+	<fstream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Ray.h
+	<gloostConfig.h>
+	<Point3.h>
+	<Vector3.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/BoundingVolume.cpp
+	<BoundingVolume.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Dcs.cpp
+	<Dcs.h>
+	<Quaternion.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Dcs.h
+	<Vector3.h>
+	<Matrix.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Quaternion.h
+	<Vector3.h>
+	<Point3.h>
+	<Matrix.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Frustum.cpp
+	<Frustum.h>
+	<string>
+	<iostream>
+	<cstring>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Material.cpp
+	<Material.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Material.h
+	<UniformTypes.h>
+	<string>
+	<GL/glew.h>
+	<GLUT/glut.h>
+	<GL/freeglut.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/UniformTypes.h
+	<gloostHelper.h>
+	<Point3.h>
+	<Vector3.h>
+	<Matrix.h>
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/gloostHelper.h
+	<string>
+	<sstream>
+	<cstring>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Matrix.cpp
+	<cstring>
+	<Matrix.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/MatrixStack.cpp
+	<MatrixStack.h>
+	<gloostConfig.h>
+	<string>
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/MatrixStack.h
+	<Matrix.h>
+	<Dcs.h>
+	<Vector3.h>
+	<string>
+	<stack>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Mesh.cpp
+	<Mesh.h>
+	<Point3.h>
+	<Vector3.h>
+	<gloostMath.h>
+	<Matrix.h>
+	<GL/glew.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<string>
+	<iostream>
+	<vector>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Mesh.h
+	<SharedResource.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<BoundingBox.h>
+	<ObjMatFile.h>
+	<BitMask.h>
+	<string>
+	<vector>
+	<iostream>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/SharedResource.h
+	<string>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/ObjMatFile.h
+	<gloostConfig.h>
+	<gloostMath.h>
+	<Material.h>
+	<SharedResource.h>
+	<string>
+	<map>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/gloostMath.h
+	<sstream>
+	<cmath>
+	<stdlib.h>
+	<UniformTypes.h>
+	<Vector3.h>
+	<Vector2.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/Vector2.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/MeshLoader.cpp
+	<MeshLoader.h>
+	<Mesh.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/MeshLoader.h
+	<string.h>
+	<string>
+	<vector>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/ObjLoader.cpp
+	<ObjLoader.h>
+	<Mesh.h>
+	<Point3.h>
+	<Vector3.h>
+	<Ray.h>
+	<gloostMath.h>
+	<gloostHelper.h>
+	<GL/glew.h>
+	<OpenGL/gl.h>
+	<GLUT/glut.h>
+	<GL/gl.h>
+	<GL/freeglut.h>
+	<string>
+	<iostream>
+	<vector>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/ObjLoader.h
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<MeshLoader.h>
+	<ObjMatFile.h>
+	<string>
+	<vector>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/ObjMatFile.cpp
+	<ObjMatFile.h>
+	<string>
+	<iostream>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Plane.cpp
+	<Plane.h>
+	<string>
+	<iostream>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Point3.cpp
+	<Point3.h>
+	<Vector3.h>
+	<cstring>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Quaternion.cpp
+	<Quaternion.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Ray.cpp
+	<Point3.h>
+	<Vector3.h>
+	<Ray.h>
+	<math.h>
+	<limits.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/SharedResource.cpp
+	<SharedResource.h>
+	<string>
+	<iostream>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/UniformTypes.cpp
+	<UniformTypes.h>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Vector2.cpp
+	<Vector2.h>
+	<gloostMath.h>
+	<cstring>
+
+1382222093 source:/home/hali/work/cg_framework/dependencies/gloost/src/Vector3.cpp
+	<Vector3.h>
+	<Point3.h>
+	<gloostMath.h>
+	<cstring>
+
+1382387925 source:/home/hali/work/cg_framework/src/Shader.cpp
+	"Shader.h"
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	<GL/glew.h>
+	<GLUT/glut.h>
+	<GL/freeglut.h>
+
+1382387925 /home/hali/work/cg_framework/src/Shader.h
+
+1382391766 source:/home/hali/work/cg_framework/src/test.cpp
+	<iostream>
+	<GL/glew.h>
+	<GLUT/glut.h>
+	<GL/freeglut.h>
+	<gloostMath.h>
+	<gloostGlUtil.h>
+	"Shader.h"
+	<Mesh.h>
+	<ObjLoader.h>
+	<FreeImage.h>
+	<Matrix.h>
+	<MatrixStack.h>
+
+1382222093 /home/hali/work/cg_framework/dependencies/gloost/src/gloostGlUtil.h
+	<gloostConfig.h>
+	<gloostMath.h>
+	<Matrix.h>
+	<Vector3.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/gloostMath.h
+	<sstream>
+	<cmath>
+	<stdlib.h>
+	<UniformTypes.h>
+	<Vector3.h>
+	<Vector2.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/UniformTypes.h
+	<gloostHelper.h>
+	<Point3.h>
+	<Vector3.h>
+	<Matrix.h>
+	<iostream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/gloostHelper.h
+	<string>
+	<sstream>
+	<cstring>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Point3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/gloostConfig.h
+	<iostream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Vector3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+	<fstream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Matrix.h
+	<gloostConfig.h>
+	<iostream>
+	<cstdlib>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Vector2.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/gloostGlUtil.h
+	<gloostConfig.h>
+	<gloostMath.h>
+	<Matrix.h>
+	<Vector3.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Mesh.h
+	<SharedResource.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<BoundingBox.h>
+	<ObjMatFile.h>
+	<BitMask.h>
+	<string>
+	<vector>
+	<iostream>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/SharedResource.h
+	<string>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Ray.h
+	<gloostConfig.h>
+	<Point3.h>
+	<Vector3.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/BoundingBox.h
+	<BoundingVolume.h>
+	<Vector3.h>
+	<Matrix.h>
+	<Point3.h>
+	<Ray.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/BoundingVolume.h
+	<Matrix.h>
+	<Frustum.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Frustum.h
+	<Point3.h>
+	<Matrix.h>
+	<Plane.h>
+	<string>
+	<vector>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Plane.h
+	<Point3.h>
+	<Vector3.h>
+	<string>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/ObjMatFile.h
+	<gloostConfig.h>
+	<gloostMath.h>
+	<Material.h>
+	<SharedResource.h>
+	<string>
+	<map>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Material.h
+	<UniformTypes.h>
+	<string>
+	<GL/glew.h>
+	<GLUT/glut.h>
+	<GL/freeglut.h>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/BitMask.h
+	<string>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/ObjLoader.h
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<MeshLoader.h>
+	<ObjMatFile.h>
+	<string>
+	<vector>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/MeshLoader.h
+	<string.h>
+	<string>
+	<vector>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/MatrixStack.h
+	<Matrix.h>
+	<Dcs.h>
+	<Vector3.h>
+	<string>
+	<stack>
+
+1382387925 /home/hali/work/cg_framework/dependencies/gloost/include/Dcs.h
+	<Vector3.h>
+	<Matrix.h>
+

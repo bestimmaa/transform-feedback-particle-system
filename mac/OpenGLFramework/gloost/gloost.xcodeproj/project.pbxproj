@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F96E3F51812E36A001770D5 /* BitMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3C91812E36A001770D5 /* BitMask.cpp */; };
+		2F96E3F61812E36A001770D5 /* BitMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3CA1812E36A001770D5 /* BitMask.h */; };
+		2F96E3F71812E36A001770D5 /* BoundingBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3CB1812E36A001770D5 /* BoundingBox.cpp */; };
+		2F96E3F81812E36A001770D5 /* BoundingBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3CC1812E36A001770D5 /* BoundingBox.h */; };
+		2F96E3F91812E36A001770D5 /* BoundingVolume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3CD1812E36A001770D5 /* BoundingVolume.cpp */; };
+		2F96E3FA1812E36A001770D5 /* BoundingVolume.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3CE1812E36A001770D5 /* BoundingVolume.h */; };
+		2F96E3FB1812E36A001770D5 /* Dcs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3CF1812E36A001770D5 /* Dcs.cpp */; };
+		2F96E3FC1812E36A001770D5 /* Dcs.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D01812E36A001770D5 /* Dcs.h */; };
+		2F96E3FD1812E36A001770D5 /* Frustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3D11812E36A001770D5 /* Frustum.cpp */; };
+		2F96E3FE1812E36A001770D5 /* Frustum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D21812E36A001770D5 /* Frustum.h */; };
+		2F96E3FF1812E36A001770D5 /* gloostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D31812E36A001770D5 /* gloostConfig.h */; };
+		2F96E4001812E36A001770D5 /* gloostGlUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D41812E36A001770D5 /* gloostGlUtil.h */; };
+		2F96E4011812E36A001770D5 /* gloostHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D51812E36A001770D5 /* gloostHelper.h */; };
+		2F96E4021812E36A001770D5 /* gloostMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D61812E36A001770D5 /* gloostMath.h */; };
+		2F96E4031812E36A001770D5 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3D71812E36A001770D5 /* Material.cpp */; };
+		2F96E4041812E36A001770D5 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3D81812E36A001770D5 /* Material.h */; };
+		2F96E4051812E36A001770D5 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3D91812E36A001770D5 /* Matrix.cpp */; };
+		2F96E4061812E36A001770D5 /* Matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3DA1812E36A001770D5 /* Matrix.h */; };
+		2F96E4071812E36A001770D5 /* MatrixStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3DB1812E36A001770D5 /* MatrixStack.cpp */; };
+		2F96E4081812E36A001770D5 /* MatrixStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3DC1812E36A001770D5 /* MatrixStack.h */; };
+		2F96E4091812E36A001770D5 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3DD1812E36A001770D5 /* Mesh.cpp */; };
+		2F96E40A1812E36A001770D5 /* Mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3DE1812E36A001770D5 /* Mesh.h */; };
+		2F96E40B1812E36A001770D5 /* MeshLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3DF1812E36A001770D5 /* MeshLoader.cpp */; };
+		2F96E40C1812E36A001770D5 /* MeshLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3E01812E36A001770D5 /* MeshLoader.h */; };
+		2F96E40D1812E36A001770D5 /* ObjLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3E11812E36A001770D5 /* ObjLoader.cpp */; };
+		2F96E40E1812E36A001770D5 /* ObjLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3E21812E36A001770D5 /* ObjLoader.h */; };
+		2F96E40F1812E36A001770D5 /* ObjMatFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3E31812E36A001770D5 /* ObjMatFile.cpp */; };
+		2F96E4101812E36A001770D5 /* ObjMatFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3E41812E36A001770D5 /* ObjMatFile.h */; };
+		2F96E4111812E36A001770D5 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3E51812E36A001770D5 /* Plane.cpp */; };
+		2F96E4121812E36A001770D5 /* Plane.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3E61812E36A001770D5 /* Plane.h */; };
+		2F96E4131812E36A001770D5 /* Point3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3E71812E36A001770D5 /* Point3.cpp */; };
+		2F96E4141812E36A001770D5 /* Point3.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3E81812E36A001770D5 /* Point3.h */; };
+		2F96E4151812E36A001770D5 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3E91812E36A001770D5 /* Quaternion.cpp */; };
+		2F96E4161812E36A001770D5 /* Quaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3EA1812E36A001770D5 /* Quaternion.h */; };
+		2F96E4171812E36A001770D5 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3EB1812E36A001770D5 /* Ray.cpp */; };
+		2F96E4181812E36A001770D5 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3EC1812E36A001770D5 /* Ray.h */; };
+		2F96E4191812E36A001770D5 /* SharedResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3ED1812E36A001770D5 /* SharedResource.cpp */; };
+		2F96E41A1812E36A001770D5 /* SharedResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3EE1812E36A001770D5 /* SharedResource.h */; };
+		2F96E41B1812E36A001770D5 /* UniformTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3EF1812E36A001770D5 /* UniformTypes.cpp */; };
+		2F96E41C1812E36A001770D5 /* UniformTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3F01812E36A001770D5 /* UniformTypes.h */; };
+		2F96E41D1812E36A001770D5 /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3F11812E36A001770D5 /* Vector2.cpp */; };
+		2F96E41E1812E36A001770D5 /* Vector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3F21812E36A001770D5 /* Vector2.h */; };
+		2F96E41F1812E36A001770D5 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E3F31812E36A001770D5 /* Vector3.cpp */; };
+		2F96E4201812E36A001770D5 /* Vector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F96E3F41812E36A001770D5 /* Vector3.h */; };
+		2FF7ECFF17F8758A00B42EA9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7ECFE17F8758A00B42EA9 /* GLUT.framework */; };
+		2FF7ED0317F8761D00B42EA9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7ED0217F8761D00B42EA9 /* OpenGL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2F96E3C91812E36A001770D5 /* BitMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitMask.cpp; sourceTree = "<group>"; };
+		2F96E3CA1812E36A001770D5 /* BitMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitMask.h; sourceTree = "<group>"; };
+		2F96E3CB1812E36A001770D5 /* BoundingBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundingBox.cpp; sourceTree = "<group>"; };
+		2F96E3CC1812E36A001770D5 /* BoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoundingBox.h; sourceTree = "<group>"; };
+		2F96E3CD1812E36A001770D5 /* BoundingVolume.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundingVolume.cpp; sourceTree = "<group>"; };
+		2F96E3CE1812E36A001770D5 /* BoundingVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoundingVolume.h; sourceTree = "<group>"; };
+		2F96E3CF1812E36A001770D5 /* Dcs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dcs.cpp; sourceTree = "<group>"; };
+		2F96E3D01812E36A001770D5 /* Dcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dcs.h; sourceTree = "<group>"; };
+		2F96E3D11812E36A001770D5 /* Frustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frustum.cpp; sourceTree = "<group>"; };
+		2F96E3D21812E36A001770D5 /* Frustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frustum.h; sourceTree = "<group>"; };
+		2F96E3D31812E36A001770D5 /* gloostConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gloostConfig.h; sourceTree = "<group>"; };
+		2F96E3D41812E36A001770D5 /* gloostGlUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gloostGlUtil.h; sourceTree = "<group>"; };
+		2F96E3D51812E36A001770D5 /* gloostHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gloostHelper.h; sourceTree = "<group>"; };
+		2F96E3D61812E36A001770D5 /* gloostMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gloostMath.h; sourceTree = "<group>"; };
+		2F96E3D71812E36A001770D5 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
+		2F96E3D81812E36A001770D5 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
+		2F96E3D91812E36A001770D5 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		2F96E3DA1812E36A001770D5 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		2F96E3DB1812E36A001770D5 /* MatrixStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixStack.cpp; sourceTree = "<group>"; };
+		2F96E3DC1812E36A001770D5 /* MatrixStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixStack.h; sourceTree = "<group>"; };
+		2F96E3DD1812E36A001770D5 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		2F96E3DE1812E36A001770D5 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		2F96E3DF1812E36A001770D5 /* MeshLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoader.cpp; sourceTree = "<group>"; };
+		2F96E3E01812E36A001770D5 /* MeshLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshLoader.h; sourceTree = "<group>"; };
+		2F96E3E11812E36A001770D5 /* ObjLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjLoader.cpp; sourceTree = "<group>"; };
+		2F96E3E21812E36A001770D5 /* ObjLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjLoader.h; sourceTree = "<group>"; };
+		2F96E3E31812E36A001770D5 /* ObjMatFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjMatFile.cpp; sourceTree = "<group>"; };
+		2F96E3E41812E36A001770D5 /* ObjMatFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjMatFile.h; sourceTree = "<group>"; };
+		2F96E3E51812E36A001770D5 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		2F96E3E61812E36A001770D5 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		2F96E3E71812E36A001770D5 /* Point3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point3.cpp; sourceTree = "<group>"; };
+		2F96E3E81812E36A001770D5 /* Point3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point3.h; sourceTree = "<group>"; };
+		2F96E3E91812E36A001770D5 /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quaternion.cpp; sourceTree = "<group>"; };
+		2F96E3EA1812E36A001770D5 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		2F96E3EB1812E36A001770D5 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
+		2F96E3EC1812E36A001770D5 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
+		2F96E3ED1812E36A001770D5 /* SharedResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SharedResource.cpp; sourceTree = "<group>"; };
+		2F96E3EE1812E36A001770D5 /* SharedResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedResource.h; sourceTree = "<group>"; };
+		2F96E3EF1812E36A001770D5 /* UniformTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UniformTypes.cpp; sourceTree = "<group>"; };
+		2F96E3F01812E36A001770D5 /* UniformTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniformTypes.h; sourceTree = "<group>"; };
+		2F96E3F11812E36A001770D5 /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2.cpp; sourceTree = "<group>"; };
+		2F96E3F21812E36A001770D5 /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
+		2F96E3F31812E36A001770D5 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
+		2F96E3F41812E36A001770D5 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		2FF7E91017F873BC00B42EA9 /* libgloost.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgloost.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FF7ECFE17F8758A00B42EA9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		2FF7ED0217F8761D00B42EA9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FF7E90D17F873BC00B42EA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FF7ED0317F8761D00B42EA9 /* OpenGL.framework in Frameworks */,
+				2FF7ECFF17F8758A00B42EA9 /* GLUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F96E3C81812E36A001770D5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2F96E3C91812E36A001770D5 /* BitMask.cpp */,
+				2F96E3CA1812E36A001770D5 /* BitMask.h */,
+				2F96E3CB1812E36A001770D5 /* BoundingBox.cpp */,
+				2F96E3CC1812E36A001770D5 /* BoundingBox.h */,
+				2F96E3CD1812E36A001770D5 /* BoundingVolume.cpp */,
+				2F96E3CE1812E36A001770D5 /* BoundingVolume.h */,
+				2F96E3CF1812E36A001770D5 /* Dcs.cpp */,
+				2F96E3D01812E36A001770D5 /* Dcs.h */,
+				2F96E3D11812E36A001770D5 /* Frustum.cpp */,
+				2F96E3D21812E36A001770D5 /* Frustum.h */,
+				2F96E3D31812E36A001770D5 /* gloostConfig.h */,
+				2F96E3D41812E36A001770D5 /* gloostGlUtil.h */,
+				2F96E3D51812E36A001770D5 /* gloostHelper.h */,
+				2F96E3D61812E36A001770D5 /* gloostMath.h */,
+				2F96E3D71812E36A001770D5 /* Material.cpp */,
+				2F96E3D81812E36A001770D5 /* Material.h */,
+				2F96E3D91812E36A001770D5 /* Matrix.cpp */,
+				2F96E3DA1812E36A001770D5 /* Matrix.h */,
+				2F96E3DB1812E36A001770D5 /* MatrixStack.cpp */,
+				2F96E3DC1812E36A001770D5 /* MatrixStack.h */,
+				2F96E3DD1812E36A001770D5 /* Mesh.cpp */,
+				2F96E3DE1812E36A001770D5 /* Mesh.h */,
+				2F96E3DF1812E36A001770D5 /* MeshLoader.cpp */,
+				2F96E3E01812E36A001770D5 /* MeshLoader.h */,
+				2F96E3E11812E36A001770D5 /* ObjLoader.cpp */,
+				2F96E3E21812E36A001770D5 /* ObjLoader.h */,
+				2F96E3E31812E36A001770D5 /* ObjMatFile.cpp */,
+				2F96E3E41812E36A001770D5 /* ObjMatFile.h */,
+				2F96E3E51812E36A001770D5 /* Plane.cpp */,
+				2F96E3E61812E36A001770D5 /* Plane.h */,
+				2F96E3E71812E36A001770D5 /* Point3.cpp */,
+				2F96E3E81812E36A001770D5 /* Point3.h */,
+				2F96E3E91812E36A001770D5 /* Quaternion.cpp */,
+				2F96E3EA1812E36A001770D5 /* Quaternion.h */,
+				2F96E3EB1812E36A001770D5 /* Ray.cpp */,
+				2F96E3EC1812E36A001770D5 /* Ray.h */,
+				2F96E3ED1812E36A001770D5 /* SharedResource.cpp */,
+				2F96E3EE1812E36A001770D5 /* SharedResource.h */,
+				2F96E3EF1812E36A001770D5 /* UniformTypes.cpp */,
+				2F96E3F01812E36A001770D5 /* UniformTypes.h */,
+				2F96E3F11812E36A001770D5 /* Vector2.cpp */,
+				2F96E3F21812E36A001770D5 /* Vector2.h */,
+				2F96E3F31812E36A001770D5 /* Vector3.cpp */,
+				2F96E3F41812E36A001770D5 /* Vector3.h */,
+			);
+			name = src;
+			path = ../../../dependencies/gloost/src;
+			sourceTree = "<group>";
+		};
+		2FF7E90717F873BC00B42EA9 = {
+			isa = PBXGroup;
+			children = (
+				2F96E3C81812E36A001770D5 /* src */,
+				2FF7ED0217F8761D00B42EA9 /* OpenGL.framework */,
+				2FF7ECFE17F8758A00B42EA9 /* GLUT.framework */,
+				2FF7E91117F873BC00B42EA9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FF7E91117F873BC00B42EA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FF7E91017F873BC00B42EA9 /* libgloost.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2FF7E90E17F873BC00B42EA9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F96E40A1812E36A001770D5 /* Mesh.h in Headers */,
+				2F96E3FF1812E36A001770D5 /* gloostConfig.h in Headers */,
+				2F96E4001812E36A001770D5 /* gloostGlUtil.h in Headers */,
+				2F96E4081812E36A001770D5 /* MatrixStack.h in Headers */,
+				2F96E40C1812E36A001770D5 /* MeshLoader.h in Headers */,
+				2F96E4201812E36A001770D5 /* Vector3.h in Headers */,
+				2F96E3F81812E36A001770D5 /* BoundingBox.h in Headers */,
+				2F96E41A1812E36A001770D5 /* SharedResource.h in Headers */,
+				2F96E4121812E36A001770D5 /* Plane.h in Headers */,
+				2F96E3FC1812E36A001770D5 /* Dcs.h in Headers */,
+				2F96E4011812E36A001770D5 /* gloostHelper.h in Headers */,
+				2F96E41E1812E36A001770D5 /* Vector2.h in Headers */,
+				2F96E4061812E36A001770D5 /* Matrix.h in Headers */,
+				2F96E40E1812E36A001770D5 /* ObjLoader.h in Headers */,
+				2F96E4021812E36A001770D5 /* gloostMath.h in Headers */,
+				2F96E3FE1812E36A001770D5 /* Frustum.h in Headers */,
+				2F96E4161812E36A001770D5 /* Quaternion.h in Headers */,
+				2F96E3FA1812E36A001770D5 /* BoundingVolume.h in Headers */,
+				2F96E3F61812E36A001770D5 /* BitMask.h in Headers */,
+				2F96E41C1812E36A001770D5 /* UniformTypes.h in Headers */,
+				2F96E4141812E36A001770D5 /* Point3.h in Headers */,
+				2F96E4041812E36A001770D5 /* Material.h in Headers */,
+				2F96E4101812E36A001770D5 /* ObjMatFile.h in Headers */,
+				2F96E4181812E36A001770D5 /* Ray.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2FF7E90F17F873BC00B42EA9 /* gloost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FF7E91417F873BC00B42EA9 /* Build configuration list for PBXNativeTarget "gloost" */;
+			buildPhases = (
+				2FF7E90C17F873BC00B42EA9 /* Sources */,
+				2FF7E90D17F873BC00B42EA9 /* Frameworks */,
+				2FF7E90E17F873BC00B42EA9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gloost;
+			productName = gloost;
+			productReference = 2FF7E91017F873BC00B42EA9 /* libgloost.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FF7E90817F873BC00B42EA9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Christoph Halang";
+			};
+			buildConfigurationList = 2FF7E90B17F873BC00B42EA9 /* Build configuration list for PBXProject "gloost" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2FF7E90717F873BC00B42EA9;
+			productRefGroup = 2FF7E91117F873BC00B42EA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FF7E90F17F873BC00B42EA9 /* gloost */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FF7E90C17F873BC00B42EA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F96E4091812E36A001770D5 /* Mesh.cpp in Sources */,
+				2F96E4051812E36A001770D5 /* Matrix.cpp in Sources */,
+				2F96E4111812E36A001770D5 /* Plane.cpp in Sources */,
+				2F96E3FD1812E36A001770D5 /* Frustum.cpp in Sources */,
+				2F96E41D1812E36A001770D5 /* Vector2.cpp in Sources */,
+				2F96E4171812E36A001770D5 /* Ray.cpp in Sources */,
+				2F96E41F1812E36A001770D5 /* Vector3.cpp in Sources */,
+				2F96E3F51812E36A001770D5 /* BitMask.cpp in Sources */,
+				2F96E40F1812E36A001770D5 /* ObjMatFile.cpp in Sources */,
+				2F96E4131812E36A001770D5 /* Point3.cpp in Sources */,
+				2F96E41B1812E36A001770D5 /* UniformTypes.cpp in Sources */,
+				2F96E4071812E36A001770D5 /* MatrixStack.cpp in Sources */,
+				2F96E4151812E36A001770D5 /* Quaternion.cpp in Sources */,
+				2F96E40D1812E36A001770D5 /* ObjLoader.cpp in Sources */,
+				2F96E4031812E36A001770D5 /* Material.cpp in Sources */,
+				2F96E3F71812E36A001770D5 /* BoundingBox.cpp in Sources */,
+				2F96E40B1812E36A001770D5 /* MeshLoader.cpp in Sources */,
+				2F96E3FB1812E36A001770D5 /* Dcs.cpp in Sources */,
+				2F96E3F91812E36A001770D5 /* BoundingVolume.cpp in Sources */,
+				2F96E4191812E36A001770D5 /* SharedResource.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2FF7E91217F873BC00B42EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2FF7E91317F873BC00B42EA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2FF7E91517F873BC00B42EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					../../../dependencies/gloost/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2FF7E91617F873BC00B42EA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					../../../dependencies/gloost/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FF7E90B17F873BC00B42EA9 /* Build configuration list for PBXProject "gloost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FF7E91217F873BC00B42EA9 /* Debug */,
+				2FF7E91317F873BC00B42EA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FF7E91417F873BC00B42EA9 /* Build configuration list for PBXNativeTarget "gloost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FF7E91517F873BC00B42EA9 /* Debug */,
+				2FF7E91617F873BC00B42EA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FF7E90817F873BC00B42EA9 /* Project object */;
+}

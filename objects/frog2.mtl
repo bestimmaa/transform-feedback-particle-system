@@ -1,0 +1,50 @@
+newmtl black
+Ka 0 0 0
+Kd 0.14902 0.180392 0.235294
+Ks 0.305 0.305 0.305
+Ni 1
+Ns 120
+Tf 1 1 1
+d 1
+map_Kd testtexture_256.jpg
+
+newmtl cockpit
+Ka 0 0 0
+Kd 0.505882 0.713726 0.921569
+Ks 1.0 1.0 1.0
+Ni 1
+Ns 120
+Tf 1 1 1
+d 1
+map_Kd testtexture_256.jpg
+
+newmtl conture
+Ka 0 0 0
+Kd 0.215686 0.27451 0.517647
+Ks 0.3 0.3 0.3
+Ni 1
+Ns 120
+Tf 1 1 1
+d 1
+map_Kd testtexture_256.jpg
+
+newmtl edges
+Ka 0.796078 0.866667 0.972549
+Kd 0.796078 0.866667 0.972549
+Ks 1.0 1.0 1.0
+Ni 1
+Ns 50
+Tf 1 1 1
+d 1
+map_Kd testtexture_256.jpg
+
+newmtl ring
+Ka 0 0 0
+Kd 0.780392 0.145098 0.160784
+Ks 0.3 0.3 0.3
+Ni 1
+Ns 120
+Tf 1 1 1
+d 1
+map_Kd testtexture_256.jpg
+

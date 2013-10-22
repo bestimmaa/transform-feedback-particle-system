@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="CGFramework/CGFramework.cbp" active="1">
+			<Depends filename="gloost/gloost.cbp" />
+		</Project>
+		<Project filename="gloost/gloost.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
