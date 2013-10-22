@@ -1,6 +1,8 @@
 CGFramework
 ===========
 
+This is the framework used in the winter term 
+
 ##Linux
 
 Open the CGFramwork.workspace in /linux with Code::Blocks. The workspace contains two projects: The framework itself (CGFramework) and the gloost library (gloost).
@@ -16,6 +18,10 @@ Install dependencies via apt-get
 ###Ressources
 
 Add all ressource files (objects, shaders, textures...) to /linux/CGFramework/copyressources.sh
+
+###Common problems
+
+* "X Error of failed request..." -> No graphics drivers installed
 
 ##Mac OS X
 
@@ -33,3 +39,7 @@ Install the dependencies via [homebrew](http://brew.sh/)
 ###Ressources
 
 Add all ressource files in the corresponding section of "Build Phases" of Xcode's project settings.
+
+###Common problems
+
+* "error: failed to launch '/Users/.../Build/Products/Debug/OpenGLFramework' -- invalid host string: 'localhost'" -> See this [question]() on StackOverflow for a solution
