@@ -7,12 +7,7 @@ Open the CGFramwork.workspace in /linux with Code::Blocks
 
 ###Dependencies
 
-sudo apt-get install freeglut3
-sudo apt-get install freeglut3-dev
-sudo apt-get install libfreeimage3
-sudo apt-get install libfreeimage-dev
-sudo apt-get install libglew1.6
-sudo apt-get install libglew1.6-dev
+*sudo apt-get install freeglut3;sudo apt-get install freeglut3-dev;sudo apt-get install libfreeimage3sudo apt-get install libfreeimage-dev;sudo apt-get install libglew1.6;sudo apt-get install libglew1.6-dev*
 
 ###Ressources
 
