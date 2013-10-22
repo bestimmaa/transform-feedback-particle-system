@@ -1,7 +1,6 @@
 CGFramework
 ===========
-
-Computer Graphhics - Winter course 2013 / 2014 - Bauhaus University Weimar
+Computer Graphics - Winter course 2013 / 2014 - Bauhaus University Weimar
 
 This is the framework used for the assigments. A version for Visual Studio on Winwows is can be downloaded at the [website of the course](http://www.uni-weimar.de/de/medien/professuren/grafische-datenverarbeitung/lehre/computergrafik/). 
 
