@@ -38,6 +38,7 @@ unsigned NormalMatrixUniformLocation     = 0;
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[3] = { 0u };
 
+//the three different matrices for projection, viewing and model transforming
 #include <Matrix.h>
 gloost::Matrix ProjectionMatrix;
 
@@ -72,6 +73,7 @@ int main(int argc, char* argv[])
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+//called every frame this functions draw
 void Draw(void)
 {
     int now = glutGet(GLUT_ELAPSED_TIME);
@@ -89,26 +91,34 @@ void Draw(void)
     cameraTransform.setTranslate(0.0,0.0,4.0);
     cameraTransform.invert();
 
+    //reset the modelmatrix
     ModelViewMatrixStack.clear();
     ModelViewMatrixStack.loadMatrix(cameraTransform);
 
     gloost::Matrix normalMatrix;
 
+    //save the current transformation onto the MatrixStack
     ModelViewMatrixStack.push();
     {
+        // transfer ModelViewMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
 
+        //set the NormalMatrix for Geometry 1
         normalMatrix = ModelViewMatrixStack.top();
         normalMatrix.invert();
         normalMatrix.transpose();
 
+        // transfer NormalMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
 
+        //bind the Geometry
         glBindVertexArray(BufferIds[0]);
+        // draw Geometry 1
         glDrawElements(GL_TRIANGLES, mesh->getTriangles().size()*3, GL_UNSIGNED_INT, 0);
 
     }
 
+    //load last transformation from stack
     ModelViewMatrixStack.pop();
 
     glBindVertexArray(0);
@@ -147,16 +157,20 @@ void RenderFunction(void)
 
 void SetupShader()
 {
+    // LOAD AND LINK SHADER
     ShaderIds[0] = glCreateProgram();
     {
+        //takes a (shader) filename and a shader-type and returns and id of the compiled shader
         ShaderIds[1] = Shader::loadShader("simpleVertexShader.vs", GL_VERTEX_SHADER);
         ShaderIds[2] = Shader::loadShader("simpleFragmentShader.fs", GL_FRAGMENT_SHADER);
 
+        //attaches a shader to a program
         glAttachShader(ShaderIds[0], ShaderIds[1]);
         glAttachShader(ShaderIds[0], ShaderIds[2]);
     }
     glLinkProgram(ShaderIds[0]);
 
+    //describes how the uniforms in the shaders are named and to which shader they belong
     ModelViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelViewMatrix");
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
@@ -169,6 +183,7 @@ void SetupShader()
 void LoadModel()
 {
 
+    //load a wavefront *.obj file
     gloost::ObjLoader loader("sphere.obj");
     mesh = loader.getMesh();
 
@@ -176,45 +191,63 @@ void LoadModel()
     //gloost::meshes have a garbage collector which throws
     //the mesh away otherwise
     mesh->takeReference();
+
     mesh->generateNormals();
+
+    //normalizes the mesh
     mesh->scaleToSize(1.0);
+    //puts the meshdata in one array
     mesh->interleave();
+
     mesh->printMeshInfo();
 
+    //create VAO which holds the state of our Vertex Attributes and VertexBufferObjects - a control structure
+    //note: for different objects more of these are needed
     glGenVertexArrays(1, &BufferIds[0]);
 
+    //bind Vertex Array - Scope begins
     glBindVertexArray(BufferIds[0]);
 
+    //Create two VertexBufferObject and bind the first one to set its data
     glGenBuffers(2, &BufferIds[1]);
     glBindBuffer(GL_ARRAY_BUFFER, BufferIds[1]);
 
+    //set the vertex data for the actual buffer; the second parameter is the size in bytes of all Vertices together
+    //the third parameter is a pointer to the vertexdata
     glBufferData(GL_ARRAY_BUFFER,
                  sizeof(float) * mesh->getInterleavedAttributes().size(),
                  &mesh->getInterleavedAttributes().front(),
                  GL_STATIC_DRAW);
 
+    //enables a VertexAttributeArray
     glEnableVertexAttribArray(0);
 
+    //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
     glVertexAttribPointer(0,
                           GLOOST_MESH_NUM_COMPONENTS_VERTEX,
                           GL_FLOAT, GL_FALSE,
                           mesh->getInterleavedInfo().interleavedPackageStride,//mesh->getInterleavedInfo().interleavedVertexStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedVertexStride));
 
+    //enables a VertexAttributeArray
     glEnableVertexAttribArray(1);
 
+    //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
     glVertexAttribPointer(1,
                           GLOOST_MESH_NUM_COMPONENTS_NORMAL,
                           GL_FLOAT, GL_FALSE,
                           mesh->getInterleavedInfo().interleavedPackageStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedNormalStride));
 
+    // the seceond VertexBufferObject ist bound
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, BufferIds[2]);
+    // its data are the indices of the vertices
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                  sizeof(gloost::TriangleFace) * mesh->getTriangles().size(),
                  &mesh->getTriangles().front(),
                  GL_STATIC_DRAW);
 
+    // unbind the VertexArray - Scope ends
     glBindVertexArray(0);
 
 }
@@ -312,6 +345,8 @@ void InitWindow(int argc, char* argv[])
 #endif
     }
 
+    //Glut function callbacks
+    //TODO: add keyboard and mouse functions
     glutTimerFunc(0, TimerFunction, 0);
     glutReshapeFunc(ResizeFunction);
     glutDisplayFunc(RenderFunction);
