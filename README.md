@@ -2,11 +2,11 @@ CGFramework
 ===========
 Computer Graphics - Winter course 2013 / 2014 - Bauhaus University Weimar
 
-This is the framework used for the assigments. A version for Visual Studio on Winwows is can be downloaded at the [website of the course](http://www.uni-weimar.de/de/medien/professuren/grafische-datenverarbeitung/lehre/computergrafik/). 
+This is the framework used for the assigments on. A version for Visual Studio on Windows can be downloaded at the [website of the course](http://www.uni-weimar.de/de/medien/professuren/grafische-datenverarbeitung/lehre/computergrafik/). 
 
 #Structure of the framework
 
-The framework provides some boiler plate code for setting up OpenGL and some basic shaders. In addition there is the gloost library included to provide functionality for mathematics and object loading. All source files are in the /src subdirectory. The gloost library is included in /dependencies and is supposed to be build in the /lib sudirectory. The provided projects take care of building gloost. You can use a different IDE or makefile by pointing it to the folders /src and /dependencies. In this case you have to take care of building gloost yourself.
+The framework provides some boiler plate code for setting up OpenGL and some basic shaders in the [test.cpp](src/test.cpp). In addition there is the gloost library included to provide functionality for mathematics and object loading. All source files are in the /src subdirectory. The gloost library is included in /dependencies and is supposed to be build in the /lib sudirectory. The provided projects take care of building gloost. You can use a different IDE or makefile by pointing it to the folders /src and /dependencies. In this case you have to take care of building gloost yourself.
 
 ##Linux
 
