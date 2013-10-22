@@ -20,7 +20,7 @@ Add all ressource files (objects, shaders, textures...) to /linux/CGFramework/co
 
 ##Mac OS X
 
-Open the CGFramwork.xcodeproj in /mac
+Open the CGFramwork.xcodeproj in /mac with Xcode
 
 ##Dependencies
 
