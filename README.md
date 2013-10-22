@@ -34,4 +34,4 @@ Install the dependencies via homebrew
 
 ###Ressources
 
-Add all ressource files in the corresponding section of "Build Phases" of Xcode
+Add all ressource files in the corresponding section of "Build Phases" of Xcode's project settings.
