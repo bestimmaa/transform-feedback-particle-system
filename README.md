@@ -22,7 +22,7 @@ Install dependencies via apt-get
 
 ###Ressources
 
-Add all ressource files (objects, shaders, textures...) to [/linux/CGFramework/copyressources.sh]( /linux/CGFramework/copyressources.sh)
+Add all ressource files (objects, shaders, textures...) to [/linux/CGFramework/copyresources.sh]( /linux/CGFramework/copyresources.sh)
 
 ###Common problems
 
