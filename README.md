@@ -23,7 +23,7 @@ Open the CGFramwork.xcodeproj in /mac with Xcode.
 
 *Please note that Apple's GLUT implementation is used instead of FreeGLUT. FreeGLUT does not support OpenGL 3.2 on OS X. This is where the ugly IFDEF come from.*
 
-##Dependencies
+###Dependencies
 
 Install the dependencies via homebrew
 
