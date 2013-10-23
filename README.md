@@ -10,7 +10,7 @@ The framework provides boiler plate code for setting up OpenGL in the [test.cpp]
 
 ###gloost library
 
-The gloost library is included to provide functionality for mathematics and object containers. All source files are in the /src subdirectory. The gloost library is included in /dependencies and is supposed to be build in the /lib sudirectory. The provided projects take care of building gloost.You can use a different IDE or makefile by pointing it to the folders /src and /dependencies. In this case you have to take care of building gloost yourself.
+The [gloost library](http://sourceforge.net/projects/gloost/) is included to provide functionality for mathematics and object containers. All source files are in the /src subdirectory. The gloost library is included in /dependencies and is supposed to be build in the /lib sudirectory. The provided projects take care of building gloost.You can use a different IDE or makefile by pointing it to the folders /src and /dependencies. In this case you have to take care of building gloost yourself.
 
 ##Linux
 
