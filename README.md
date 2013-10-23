@@ -42,8 +42,7 @@ Open the CGFramwork.xcodeproj in /mac with Xcode.
 
 Install the dependencies via [homebrew](http://brew.sh/)
 
-* sudo brew install glew
-* sudo brew install freeimage
+*brew install glew;brew install freeimage*
 
 ###Ressources
 
