@@ -11,6 +11,11 @@
 		2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F418B861812C5F10002F7D1 /* libGLEW.dylib */; };
 		2F5477BC1819B6E100107C80 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
 		2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */; };
+		2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C41819BBFA00107C80 /* Particles.cpp */; };
+		2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C61819BBFA00107C80 /* Texture.cpp */; };
+		2F5477CF1819BC8700107C80 /* myParticleFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */; };
+		2F5477D01819BC8700107C80 /* myPlaygroundFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */; };
+		2F5477D11819BC8700107C80 /* myVertexShader.vs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CE1819BC8700107C80 /* myVertexShader.vs */; };
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
 		2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */; };
@@ -67,6 +72,14 @@
 		2F30819318141D1000F81220 /* gloost.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gloost.xcodeproj; path = gloost/gloost.xcodeproj; sourceTree = "<group>"; };
 		2F418B861812C5F10002F7D1 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
 		2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimage-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimage-3.15.4.dylib"; sourceTree = "<absolute>"; };
+		2F5477C31819BBFA00107C80 /* beleg3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beleg3.cpp; sourceTree = "<group>"; };
+		2F5477C41819BBFA00107C80 /* Particles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particles.cpp; sourceTree = "<group>"; };
+		2F5477C51819BBFA00107C80 /* Particles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particles.h; sourceTree = "<group>"; };
+		2F5477C61819BBFA00107C80 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		2F5477C71819BBFA00107C80 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myParticleFragmentShader.fs; sourceTree = "<group>"; };
+		2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myPlaygroundFragmentShader.fs; sourceTree = "<group>"; };
+		2F5477CE1819BC8700107C80 /* myVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myVertexShader.vs; sourceTree = "<group>"; };
 		2F96E43C1812E4C3001770D5 /* model_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model_obj.cpp; sourceTree = "<group>"; };
 		2F96E43D1812E4C3001770D5 /* model_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model_obj.h; sourceTree = "<group>"; };
 		2F96E4481812E4C3001770D5 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -128,6 +141,11 @@
 		2F96E43B1812E4C3001770D5 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				2F5477C31819BBFA00107C80 /* beleg3.cpp */,
+				2F5477C41819BBFA00107C80 /* Particles.cpp */,
+				2F5477C51819BBFA00107C80 /* Particles.h */,
+				2F5477C61819BBFA00107C80 /* Texture.cpp */,
+				2F5477C71819BBFA00107C80 /* Texture.h */,
 				2F96E43C1812E4C3001770D5 /* model_obj.cpp */,
 				2F96E43D1812E4C3001770D5 /* model_obj.h */,
 				2F96E4481812E4C3001770D5 /* Shader.cpp */,
@@ -142,6 +160,9 @@
 		2F96E44A1812E4C3001770D5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */,
+				2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */,
+				2F5477CE1819BC8700107C80 /* myVertexShader.vs */,
 				2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */,
 				2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */,
 			);
@@ -272,10 +293,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */,
+				2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */,
 				2F5477BC1819B6E100107C80 /* main.cpp in Sources */,
+				2F5477D01819BC8700107C80 /* myPlaygroundFragmentShader.fs in Sources */,
 				2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */,
 				2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */,
+				2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */,
 				2F96E4511812E4C3001770D5 /* simpleVertexShader.vs in Sources */,
+				2F5477CF1819BC8700107C80 /* myParticleFragmentShader.fs in Sources */,
+				2F5477D11819BC8700107C80 /* myVertexShader.vs in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
