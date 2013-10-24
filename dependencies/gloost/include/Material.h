@@ -43,6 +43,7 @@
 #include <GL/freeglut.h>
 #endif
 
+
 namespace gloost
 {
 

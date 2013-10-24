@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		2F418B851812C2430002F7D1 /* libgloost.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7E91C17F873BC00B42EA9 /* libgloost.dylib */; };
 		2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F418B861812C5F10002F7D1 /* libGLEW.dylib */; };
+		2F5477BC1819B6E100107C80 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
+		2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */; };
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
 		2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */; };
 		2F96E4511812E4C3001770D5 /* simpleVertexShader.vs in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */; };
-		2F96E4521812E4C3001770D5 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* test.cpp */; };
 		2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96E4571812E5DA001770D5 /* GLUT.framework */; };
 		2F96E46F1812E810001770D5 /* simpleFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */; };
 		2F96E4701812E813001770D5 /* simpleVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */; };
@@ -65,13 +66,14 @@
 /* Begin PBXFileReference section */
 		2F30819318141D1000F81220 /* gloost.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gloost.xcodeproj; path = gloost/gloost.xcodeproj; sourceTree = "<group>"; };
 		2F418B861812C5F10002F7D1 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
+		2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimage-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimage-3.15.4.dylib"; sourceTree = "<absolute>"; };
 		2F96E43C1812E4C3001770D5 /* model_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model_obj.cpp; sourceTree = "<group>"; };
 		2F96E43D1812E4C3001770D5 /* model_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model_obj.h; sourceTree = "<group>"; };
 		2F96E4481812E4C3001770D5 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		2F96E4491812E4C3001770D5 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleFragmentShader.fs; sourceTree = "<group>"; };
 		2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleVertexShader.vs; sourceTree = "<group>"; };
-		2F96E44D1812E4C3001770D5 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		2F96E44D1812E4C3001770D5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2F96E4571812E5DA001770D5 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		2FEC7126181321B300561692 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = box.obj; sourceTree = "<group>"; };
 		2FEC7127181321B300561692 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */,
 				2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */,
 				2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */,
 				2F418B851812C2430002F7D1 /* libgloost.dylib in Frameworks */,
@@ -113,6 +116,7 @@
 		2F418B8A1812C70E0002F7D1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */,
 				2F96E4571812E5DA001770D5 /* GLUT.framework */,
 				2F418B861812C5F10002F7D1 /* libGLEW.dylib */,
 				2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */,
@@ -129,7 +133,7 @@
 				2F96E4481812E4C3001770D5 /* Shader.cpp */,
 				2F96E4491812E4C3001770D5 /* Shader.h */,
 				2F96E44A1812E4C3001770D5 /* shaders */,
-				2F96E44D1812E4C3001770D5 /* test.cpp */,
+				2F96E44D1812E4C3001770D5 /* main.cpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -268,9 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */,
+				2F5477BC1819B6E100107C80 /* main.cpp in Sources */,
 				2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */,
 				2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */,
-				2F96E4521812E4C3001770D5 /* test.cpp in Sources */,
 				2F96E4511812E4C3001770D5 /* simpleVertexShader.vs in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,7 +367,10 @@
 					/usr/local/include,
 					"$(PROJECT_DIR)/../../dependencies/gloost/include",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/freeimage/3.15.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -377,7 +384,10 @@
 					/usr/local/include,
 					"$(PROJECT_DIR)/../../dependencies/gloost/include",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/freeimage/3.15.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

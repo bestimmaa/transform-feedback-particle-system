@@ -8,13 +8,12 @@
 #include <stdlib.h>
 #include <cstring>
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include <GL/freeglut.h>
 #endif
-
 
 
 static char* textFileRead(const char *fileName) {

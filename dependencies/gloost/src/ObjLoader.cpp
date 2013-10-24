@@ -36,12 +36,11 @@
 
 
 /// cpp includes
-#include <GL/glew.h>
-#ifdef __APPLE__
+#include "GL/glew.h"
 #include <OpenGL/gl.h>
+#ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
-#include <GL/gl.h>
 #include <GL/freeglut.h>
 #endif
 #include <string>
