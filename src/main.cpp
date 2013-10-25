@@ -83,7 +83,7 @@ void Draw(void)
     int now = glutGet(GLUT_ELAPSED_TIME);
 
     // Rotation
-    // float rotation = now*0.001;
+    float rotation = now*0.001;
 
 
     //////////////////////////////////////////////////////////////////////////
@@ -104,6 +104,8 @@ void Draw(void)
     //save the current transformation onto the MatrixStack
     ModelViewMatrixStack.push();
     {
+        ModelViewMatrixStack.translate(0, 0, 0);
+        ModelViewMatrixStack.rotate(rotation, 1.0, 0, 0);
         // transfer ModelViewMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
 
@@ -117,6 +119,8 @@ void Draw(void)
 
         //bind the Geometry
         glBindVertexArray(BufferIds[0]);
+        
+        g_texture1->bind();
         // draw Geometry 1
         glDrawElements(GL_TRIANGLES, mesh->getTriangles().size()*3, GL_UNSIGNED_INT, 0);
 
@@ -165,8 +169,8 @@ void SetupShader()
     ShaderIds[0] = glCreateProgram();
     {
         //takes a (shader) filename and a shader-type and returns and id of the compiled shader
-        ShaderIds[1] = Shader::loadShader("simpleVertexShader.vs", GL_VERTEX_SHADER);
-        ShaderIds[2] = Shader::loadShader("simpleFragmentShader.fs", GL_FRAGMENT_SHADER);
+        ShaderIds[1] = Shader::loadShader("myVertexShader.vs", GL_VERTEX_SHADER);
+        ShaderIds[2] = Shader::loadShader("myPlaygroundFragmentShader.fs", GL_FRAGMENT_SHADER);
 
         //attaches a shader to a program
         glAttachShader(ShaderIds[0], ShaderIds[1]);
