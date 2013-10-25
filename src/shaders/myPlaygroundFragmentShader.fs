@@ -16,7 +16,7 @@ out vec4 out_Color;
 void main(void)
 {
 
-        vec4 color = texture2D(colorMap, texcoord); 
+        vec4 color = texture(colorMap, texcoord); 
        
         vec3 lightPosition = vec3(0.0,10.0,0.0);
         vec4 AmbientColor = vec4(0.0, 0.0, 0.0, 1.0);
