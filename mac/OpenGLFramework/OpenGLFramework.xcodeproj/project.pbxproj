@@ -13,13 +13,11 @@
 		2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */; };
 		2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C41819BBFA00107C80 /* Particles.cpp */; };
 		2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C61819BBFA00107C80 /* Texture.cpp */; };
-		2F5477CF1819BC8700107C80 /* myParticleFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */; };
-		2F5477D01819BC8700107C80 /* myPlaygroundFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */; };
-		2F5477D11819BC8700107C80 /* myVertexShader.vs in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477CE1819BC8700107C80 /* myVertexShader.vs */; };
+		2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CE1819BC8700107C80 /* myVertexShader.vs */; };
+		2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */; };
+		2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */; };
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
-		2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */; };
-		2F96E4511812E4C3001770D5 /* simpleVertexShader.vs in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */; };
 		2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96E4571812E5DA001770D5 /* GLUT.framework */; };
 		2F96E46F1812E810001770D5 /* simpleFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96E44B1812E4C3001770D5 /* simpleFragmentShader.fs */; };
 		2F96E4701812E813001770D5 /* simpleVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */; };
@@ -59,6 +57,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */,
+				2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */,
+				2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */,
 				2F96E46F1812E810001770D5 /* simpleFragmentShader.fs in CopyFiles */,
 				2F96E4701812E813001770D5 /* simpleVertexShader.vs in CopyFiles */,
 				2FEC7130181321BE00561692 /* sphere.mtl in CopyFiles */,
@@ -292,16 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F96E4501812E4C3001770D5 /* simpleFragmentShader.fs in Sources */,
 				2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */,
 				2F5477BC1819B6E100107C80 /* main.cpp in Sources */,
-				2F5477D01819BC8700107C80 /* myPlaygroundFragmentShader.fs in Sources */,
 				2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */,
 				2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */,
 				2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */,
-				2F96E4511812E4C3001770D5 /* simpleVertexShader.vs in Sources */,
-				2F5477CF1819BC8700107C80 /* myParticleFragmentShader.fs in Sources */,
-				2F5477D11819BC8700107C80 /* myVertexShader.vs in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
