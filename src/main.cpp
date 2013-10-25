@@ -26,6 +26,8 @@ gloost::Mesh* mesh = 0;
 //FreeImage Library
 #include <FreeImage.h>
 
+#include "Texture.h"
+
 
 int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
 
@@ -34,6 +36,8 @@ unsigned FrameCount = 0;
 unsigned ProjectionMatrixUniformLocation = 0;
 unsigned ModelViewMatrixUniformLocation  = 0;
 unsigned NormalMatrixUniformLocation     = 0;
+
+Texture* g_texture1 = 0;
 
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[3] = { 0u };
@@ -199,7 +203,7 @@ void LoadModel()
     //puts the meshdata in one array
     mesh->interleave();
 
-    mesh->printMeshInfo();
+    //mesh->printMeshInfo();
 
     //create VAO which holds the state of our Vertex Attributes and VertexBufferObjects - a control structure
     //note: for different objects more of these are needed
@@ -223,21 +227,34 @@ void LoadModel()
     glEnableVertexAttribArray(0);
 
     //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
+    //(index,size,type,normalized,stride = byte offset between vertices in buffer,pointer = offset to the first component of vertex attribute);
     glVertexAttribPointer(0,
                           GLOOST_MESH_NUM_COMPONENTS_VERTEX,
-                          GL_FLOAT, GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,//mesh->getInterleavedInfo().interleavedVertexStride,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          mesh->getInterleavedInfo().interleavedPackageStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedVertexStride));
 
     //enables a VertexAttributeArray
     glEnableVertexAttribArray(1);
 
-    //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
+    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
     glVertexAttribPointer(1,
                           GLOOST_MESH_NUM_COMPONENTS_NORMAL,
                           GL_FLOAT, GL_FALSE,
                           mesh->getInterleavedInfo().interleavedPackageStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedNormalStride));
+    
+    // load texture data (myVertexShader: layout(location=2) in vec2 in_Texcoord)
+    
+	glEnableVertexAttribArray(2);
+    
+	//specifies where in the GL_ARRAY_BUFFER our data(the texture coordinates) is exactly
+	glVertexAttribPointer(2,
+                          GLOOST_MESH_NUM_COMPONENTS_TEXCOORD,
+                          GL_FLOAT, GL_FALSE,
+                          mesh->getInterleavedInfo().interleavedPackageStride,
+                          (GLvoid*)(mesh->getInterleavedInfo().interleavedTexcoordStride));
 
     // the seceond VertexBufferObject ist bound
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, BufferIds[2]);
@@ -401,4 +418,7 @@ void Initialize(int argc, char* argv[])
 
     SetupShader();
     LoadModel();
+    
+    //Load jpg as texture
+	g_texture1 = new Texture("earth.jpg");
 }

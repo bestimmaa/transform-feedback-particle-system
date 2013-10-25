@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F418B851812C2430002F7D1 /* libgloost.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7E91C17F873BC00B42EA9 /* libgloost.dylib */; };
 		2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F418B861812C5F10002F7D1 /* libGLEW.dylib */; };
 		2F5477BC1819B6E100107C80 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
 		2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */; };
@@ -23,6 +22,8 @@
 		2F96E4701812E813001770D5 /* simpleVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96E44C1812E4C3001770D5 /* simpleVertexShader.vs */; };
 		2FEC712F181321BC00561692 /* sphere.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712E181321B300561692 /* sphere.obj */; };
 		2FEC7130181321BE00561692 /* sphere.mtl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712D181321B300561692 /* sphere.mtl */; };
+		2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FED3297181A9D0D00120BE0 /* earth.jpg */; };
+		2FED329C181A9DBC00120BE0 /* libgloost.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F30819818141D1000F81220 /* libgloost.dylib */; };
 		2FF7E90417F8738E00B42EA9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7E90317F8738E00B42EA9 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,18 +35,11 @@
 			remoteGlobalIDString = 2FF7E91017F873BC00B42EA9;
 			remoteInfo = gloost;
 		};
-		2FEC7123181320F700561692 /* PBXContainerItemProxy */ = {
+		2FED329A181A9D8200120BE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */;
+			containerPortal = 2F30819318141D1000F81220 /* gloost.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 2FF7E90F17F873BC00B42EA9;
-			remoteInfo = gloost;
-		};
-		2FF7E91B17F873BC00B42EA9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2FF7E91017F873BC00B42EA9;
 			remoteInfo = gloost;
 		};
 /* End PBXContainerItemProxy section */
@@ -57,6 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */,
 				2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */,
 				2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */,
 				2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */,
@@ -98,9 +93,9 @@
 		2FEC712C181321B300561692 /* ladybird.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ladybird.obj; sourceTree = "<group>"; };
 		2FEC712D181321B300561692 /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		2FEC712E181321B300561692 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		2FED3297181A9D0D00120BE0 /* earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpg; sourceTree = "<group>"; };
 		2FF7E8F717F8738200B42EA9 /* OpenGLFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF7E90317F8738E00B42EA9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gloost.xcodeproj; path = gloost/gloost.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +103,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FED329C181A9DBC00120BE0 /* libgloost.dylib in Frameworks */,
 				2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */,
 				2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */,
 				2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */,
-				2F418B851812C2430002F7D1 /* libgloost.dylib in Frameworks */,
 				2FF7E90417F8738E00B42EA9 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,10 +125,10 @@
 		2F418B8A1812C70E0002F7D1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				2F30819318141D1000F81220 /* gloost.xcodeproj */,
 				2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */,
 				2F96E4571812E5DA001770D5 /* GLUT.framework */,
 				2F418B861812C5F10002F7D1 /* libGLEW.dylib */,
-				2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */,
 				2FF7E90317F8738E00B42EA9 /* OpenGL.framework */,
 			);
 			name = Lib;
@@ -187,10 +182,19 @@
 			path = ../../objects;
 			sourceTree = "<group>";
 		};
+		2FED3296181A9D0D00120BE0 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				2FED3297181A9D0D00120BE0 /* earth.jpg */,
+			);
+			name = textures;
+			path = ../../textures;
+			sourceTree = "<group>";
+		};
 		2FF7E8EE17F8738200B42EA9 = {
 			isa = PBXGroup;
 			children = (
-				2F30819318141D1000F81220 /* gloost.xcodeproj */,
+				2FED3296181A9D0D00120BE0 /* textures */,
 				2FEC7125181321B300561692 /* objects */,
 				2F96E43B1812E4C3001770D5 /* src */,
 				2F418B8A1812C70E0002F7D1 /* Lib */,
@@ -202,14 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				2FF7E8F717F8738200B42EA9 /* OpenGLFramework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2FF7E91817F873BC00B42EA9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2FF7E91C17F873BC00B42EA9 /* libgloost.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,7 +224,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2FEC7124181320F700561692 /* PBXTargetDependency */,
+				2FED329B181A9D8200120BE0 /* PBXTargetDependency */,
 			);
 			name = OpenGLFramework;
 			productName = OpenGLFramework;
@@ -256,10 +252,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2FF7E91817F873BC00B42EA9 /* Products */;
-					ProjectRef = 2FF7E91717F873BC00B42EA9 /* gloost.xcodeproj */;
-				},
-				{
 					ProductGroup = 2F30819418141D1000F81220 /* Products */;
 					ProjectRef = 2F30819318141D1000F81220 /* gloost.xcodeproj */;
 				},
@@ -277,13 +269,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libgloost.dylib;
 			remoteRef = 2F30819718141D1000F81220 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2FF7E91C17F873BC00B42EA9 /* libgloost.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libgloost.dylib;
-			remoteRef = 2FF7E91B17F873BC00B42EA9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -304,10 +289,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2FEC7124181320F700561692 /* PBXTargetDependency */ = {
+		2FED329B181A9D8200120BE0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = gloost;
-			targetProxy = 2FEC7123181320F700561692 /* PBXContainerItemProxy */;
+			targetProxy = 2FED329A181A9D8200120BE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
