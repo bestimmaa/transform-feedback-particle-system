@@ -32,7 +32,6 @@ Texture::Texture(const std::string& filename):
 	CheckErrorsGL("Texture::Texture: befor GL_TEXTURE_2D");
 
 
-	//glEnable(GL_TEXTURE_2D);
 	CheckErrorsGL("Texture::Texture: after glEnable(GL_TEXTURE_2D)");
     glActiveTexture(GL_TEXTURE0);
 	CheckErrorsGL("Texture::Texture: after glActiveTexture(GL_TEXTURE0)");
