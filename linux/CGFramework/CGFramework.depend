@@ -444,3 +444,29 @@
 	<Vector3.h>
 	<Matrix.h>
 
+1382806256 source:/home/hali/work/CGFramework/src/Shader.cpp
+	"Shader.h"
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<stdlib.h>
+	<cstring>
+	"GL/glew.h"
+	<GLUT/glut.h>
+	<GL/freeglut.h>
+
+1382806256 /home/hali/work/CGFramework/src/Shader.h
+
+1382806256 source:/home/hali/work/CGFramework/src/model_obj.cpp
+	"model_obj.h"
+	<limits>
+	<fstream>
+	<string.h>
+	<algorithm>
+	<cmath>
+
+1382806256 /home/hali/work/CGFramework/src/model_obj.h
+	<string>
+	<vector>
+	<map>
+
