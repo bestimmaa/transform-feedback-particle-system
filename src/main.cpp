@@ -36,8 +36,10 @@ unsigned FrameCount = 0;
 unsigned ProjectionMatrixUniformLocation = 0;
 unsigned ModelViewMatrixUniformLocation  = 0;
 unsigned NormalMatrixUniformLocation     = 0;
+unsigned textureUniformLocation1         = 0;		//Uniform Texture
 
 Texture* g_texture1 = 0;
+Texture* g_texture2 = 0;
 
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[3] = { 0u };
@@ -84,6 +86,7 @@ void Draw(void)
 
     // Rotation
     float rotation = now*0.001;
+	glUniform1i(textureUniformLocation1, 0); //  Specify the value of text uniform variable for the current program object
 
 
     //////////////////////////////////////////////////////////////////////////
@@ -105,7 +108,7 @@ void Draw(void)
     ModelViewMatrixStack.push();
     {
         ModelViewMatrixStack.translate(0, 0, 0);
-        ModelViewMatrixStack.rotate(rotation, 1.0, 0, 0);
+        ModelViewMatrixStack.rotate(rotation, 0.0, 1.0, 0);
         // transfer ModelViewMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
 
@@ -125,7 +128,7 @@ void Draw(void)
         glDrawElements(GL_TRIANGLES, mesh->getTriangles().size()*3, GL_UNSIGNED_INT, 0);
 
     }
-
+    
     //load last transformation from stack
     ModelViewMatrixStack.pop();
 
@@ -182,6 +185,8 @@ void SetupShader()
     ModelViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelViewMatrix");
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
+    textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");
+
 }
 
 
