@@ -219,7 +219,8 @@ void LoadModel()
                  &mesh->getInterleavedAttributes().front(),
                  GL_STATIC_DRAW);
 
-    //enables a VertexAttributeArray
+    //enables a VertexAttributePointer for position 0
+    //the shader can reference this as layout(location=0)
     glEnableVertexAttribArray(0);
 
     //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
@@ -229,7 +230,8 @@ void LoadModel()
                           mesh->getInterleavedInfo().interleavedPackageStride,//mesh->getInterleavedInfo().interleavedVertexStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedVertexStride));
 
-    //enables a VertexAttributeArray
+    //enables a VertexAttributePointer for position 1
+    //the shader can reference this as layout(location=1)
     glEnableVertexAttribArray(1);
 
     //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
