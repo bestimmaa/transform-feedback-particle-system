@@ -85,6 +85,8 @@ void Draw(void)
     //////////////////////////////////////////////////////////////////////////
 
     glUseProgram(ShaderIds[0]);
+    // bind VAO to load configuration 
+    glBindVertexArray(BufferIds[0]);
 
     gloost::Matrix cameraTransform;
     cameraTransform.setIdentity();
