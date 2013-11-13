@@ -4,7 +4,7 @@ Computer Graphics - Winter course 2013 / 2014 - Bauhaus University Weimar
 
 A version for Visual Studio on Windows can be downloaded at the [website of the course](http://www.uni-weimar.de/de/medien/professuren/grafische-datenverarbeitung/lehre/computergrafik/). 
 
-The slides and additional material can be found in the [wiki section](https://github.com/bestimmaa/CGFramework/wiki)
+The slides from the Q&A session and additional material can be found in the [wiki section](https://github.com/bestimmaa/CGFramework/wiki)
 ##Structure of the framework
 
 All source files are in the /src subdirectory. The framework provides boiler plate code for setting up OpenGL in the [test.cpp](src/test.cpp). 
