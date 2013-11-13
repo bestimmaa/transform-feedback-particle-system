@@ -92,6 +92,8 @@ void Draw(void)
     //////////////////////////////////////////////////////////////////////////
 
     glUseProgram(ShaderIds[0]);
+    // bind VAO to load configuration 
+    glBindVertexArray(BufferIds[0]);
 
     gloost::Matrix cameraTransform;
     cameraTransform.setIdentity();
@@ -124,6 +126,7 @@ void Draw(void)
         glBindVertexArray(BufferIds[0]);
         
         g_texture1->bind();
+
         // draw Geometry 1
         glDrawElements(GL_TRIANGLES, mesh->getTriangles().size()*3, GL_UNSIGNED_INT, 0);
 
@@ -232,7 +235,8 @@ void LoadModel()
                  &mesh->getInterleavedAttributes().front(),
                  GL_STATIC_DRAW);
 
-    //enables a VertexAttributeArray
+    //enables a VertexAttributePointer for position 0
+    //the shader can reference this as layout(location=0)
     glEnableVertexAttribArray(0);
 
     //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
@@ -244,7 +248,8 @@ void LoadModel()
                           mesh->getInterleavedInfo().interleavedPackageStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedVertexStride));
 
-    //enables a VertexAttributeArray
+    //enables a VertexAttributePointer for position 1
+    //the shader can reference this as layout(location=1)
     glEnableVertexAttribArray(1);
 
     //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly

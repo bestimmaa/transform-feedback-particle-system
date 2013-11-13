@@ -47,9 +47,9 @@
 		</Compiler>
 		<Unit filename="../../src/Shader.cpp" />
 		<Unit filename="../../src/Shader.h" />
+		<Unit filename="../../src/main.cpp" />
 		<Unit filename="../../src/model_obj.cpp" />
 		<Unit filename="../../src/model_obj.h" />
-		<Unit filename="../../src/test.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

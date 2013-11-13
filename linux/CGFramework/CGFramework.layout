@@ -2,15 +2,12 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="../../src/Shader.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="131" topLine="0" />
+	</File>
+	<File name="../../src/model_obj.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="../../src/model_obj.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
-	</File>
-	<File name="../../src/model_obj.h" open="1" top="0" tabpos="4">
+	<File name="../../src/model_obj.h" open="1" top="0" tabpos="3">
 		<Cursor position="601" topLine="0" />
-	</File>
-	<File name="../../src/test.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="4122" topLine="155" />
 	</File>
 </CodeBlocks_layout_file>
