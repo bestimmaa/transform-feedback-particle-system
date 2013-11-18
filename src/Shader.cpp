@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
-
 #include "GL/glew.h"
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -15,11 +14,8 @@
 #include <GL/freeglut.h>
 #endif
 
-
 static char* textFileRead(const char *fileName) {
 	char* text = 0;
-
-
 
 	if (fileName != 0) {
 		FILE *file = fopen(fileName, "rt");

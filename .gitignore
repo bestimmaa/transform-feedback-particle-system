@@ -1,2 +1,7 @@
 build
 OpenGLFramework.xccheckout
+dependencies/gloost/lib/
+win/CGFramework/CGFramework/Debug/
+win/CGFramework/gloost/Debug/BitMask.obj
+win/CGFramework/gloost/Debug/
+win/CGFramework/ipch/
