@@ -39,8 +39,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\..\..\build\</OutDir>
-    <IntDir>$(SolutionDir)\..\..\build\intermediate</IntDir>
+    <OutDir>$(SolutionDir)\build\debug\</OutDir>
+    <IntDir>$(SolutionDir)\build\debug\intermediate\</IntDir>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -49,6 +52,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\..\dependencies\gloost\include;$(SolutionDir)\..\..\dependencies\FreeImage\Dist;$(SolutionDir)\..\..\dependencies\freeglut_msvc\include;$(SolutionDir)\..\..\dependencies\glew-1.10.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -56,13 +60,16 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\..\dependencies\gloost\lib;$(SolutionDir)\..\..\dependencies\glew-1.10.0\lib\Release\Win32;$(SolutionDir)\..\..\dependencies\freeglut_msvc\lib;$(SolutionDir)\..\..\dependencies\FreeImage\Dist;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y $(SolutionDir)..\..\dependencies\FreeImage\Dist\FreeImage.dll $(OutputDir)
-xcopy /y $(SolutionDir)..\..\dependencies\freeglut_msvc\bin\freeglut.dll $(OutputDir)
-xcopy /y $(SolutionDir)..\..\objects\sphere.obj $(OutputDir)
-xcopy /y $(SolutionDir)..\..\src\shaders\simpleVertexShader.vs $(OutputDir)
-xcopy /y $(SolutionDir)..\..\src\shaders\simpleFragmentShader.fs $(OutputDir)</Command>
+      <Command>xcopy /y $(SolutionDir)..\..\dependencies\FreeImage\Dist\FreeImage.dll $(SolutionDir)build\
+xcopy /y $(SolutionDir)..\..\dependencies\freeglut_msvc\bin\freeglut.dll $(SolutionDir)build\
+xcopy /y $(SolutionDir)..\..\objects\sphere.obj $(SolutionDir)build\
+xcopy /y $(SolutionDir)..\..\src\shaders\simpleVertexShader.vs $(SolutionDir)build\
+xcopy /y $(SolutionDir)..\..\src\shaders\simpleFragmentShader.fs $(SolutionDir)build\</Command>
       <Message>Copy ressources</Message>
     </PostBuildEvent>
+    <BuildLog>
+      <Path>$(OutDir)\$(MSBuildProjectName).log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

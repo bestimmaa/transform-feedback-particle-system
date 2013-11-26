@@ -62,9 +62,8 @@ void RenderFunction(void);
 
 int main(int argc, char* argv[])
 {
-
-    Initialize(argc, argv);
-
+	std::cout << std::string(argv[0]);
+	Initialize(argc, argv);
     glutMainLoop();
 
     exit(EXIT_SUCCESS);
