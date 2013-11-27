@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGFramework", "CGFramework\CGFramework.vcxproj", "{1BCCCAC8-E44F-44B5-A602-662D51517387}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B40179C8-AB27-4428-8054-8A688ED6793A} = {B40179C8-AB27-4428-8054-8A688ED6793A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gloost", "gloost\gloost.vcxproj", "{B40179C8-AB27-4428-8054-8A688ED6793A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BCCCAC8-E44F-44B5-A602-662D51517387}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1BCCCAC8-E44F-44B5-A602-662D51517387}.Debug|Win32.Build.0 = Debug|Win32
+		{1BCCCAC8-E44F-44B5-A602-662D51517387}.Release|Win32.ActiveCfg = Release|Win32
+		{1BCCCAC8-E44F-44B5-A602-662D51517387}.Release|Win32.Build.0 = Release|Win32
+		{B40179C8-AB27-4428-8054-8A688ED6793A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B40179C8-AB27-4428-8054-8A688ED6793A}.Debug|Win32.Build.0 = Debug|Win32
+		{B40179C8-AB27-4428-8054-8A688ED6793A}.Release|Win32.ActiveCfg = Release|Win32
+		{B40179C8-AB27-4428-8054-8A688ED6793A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
