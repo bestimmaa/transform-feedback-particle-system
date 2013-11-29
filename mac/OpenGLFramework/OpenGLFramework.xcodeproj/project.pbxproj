@@ -15,6 +15,7 @@
 		2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CE1819BC8700107C80 /* myVertexShader.vs */; };
 		2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */; };
 		2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */; };
+		2F6176791848244800ABFB8C /* earth_normalmap.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F6176781848244500ABFB8C /* earth_normalmap.jpg */; };
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
 		2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96E4571812E5DA001770D5 /* GLUT.framework */; };
@@ -49,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				2F6176791848244800ABFB8C /* earth_normalmap.jpg in CopyFiles */,
 				2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */,
 				2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */,
 				2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */,
@@ -71,6 +73,7 @@
 		2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myParticleFragmentShader.fs; sourceTree = "<group>"; };
 		2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myPlaygroundFragmentShader.fs; sourceTree = "<group>"; };
 		2F5477CE1819BC8700107C80 /* myVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = myVertexShader.vs; sourceTree = "<group>"; };
+		2F6176781848244500ABFB8C /* earth_normalmap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth_normalmap.jpg; sourceTree = "<group>"; };
 		2F96E43C1812E4C3001770D5 /* model_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model_obj.cpp; sourceTree = "<group>"; };
 		2F96E43D1812E4C3001770D5 /* model_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model_obj.h; sourceTree = "<group>"; };
 		2F96E4481812E4C3001770D5 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 		2FED3296181A9D0D00120BE0 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				2F6176781848244500ABFB8C /* earth_normalmap.jpg */,
 				2FED3297181A9D0D00120BE0 /* earth.jpg */,
 			);
 			name = textures;

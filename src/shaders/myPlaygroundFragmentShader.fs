@@ -20,6 +20,7 @@ void main(void)
 {
 
         vec4 color = texture(colorMap, texcoord);
+        vec4 normal_bumped = vec4(normalize(texture ( normalMap, vec2(texcoord.x,-texcoord.y)).rgb*2.0-1.0),0);
         //vec4 color = vec4(0.3,0.2,1.0,1.0);
     
         vec3 lightPosition = vec3(0.0,10.0,0.0);
@@ -49,6 +50,5 @@ void main(void)
 
         out_Color = out_Color + color * phongFactor; // add phong highlight
 
-        
-
+    
 }
