@@ -64,7 +64,6 @@
 		2F30819318141D1000F81220 /* gloost.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gloost.xcodeproj; path = gloost/gloost.xcodeproj; sourceTree = "<group>"; };
 		2F418B861812C5F10002F7D1 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
 		2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libfreeimage-3.15.4.dylib"; path = "/usr/local/Cellar/freeimage/3.15.4/lib/libfreeimage-3.15.4.dylib"; sourceTree = "<absolute>"; };
-		2F5477C31819BBFA00107C80 /* beleg3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beleg3.cpp; sourceTree = "<group>"; };
 		2F5477C41819BBFA00107C80 /* Particles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particles.cpp; sourceTree = "<group>"; };
 		2F5477C51819BBFA00107C80 /* Particles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particles.h; sourceTree = "<group>"; };
 		2F5477C61819BBFA00107C80 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
@@ -131,7 +130,6 @@
 		2F96E43B1812E4C3001770D5 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				2F5477C31819BBFA00107C80 /* beleg3.cpp */,
 				2F5477C41819BBFA00107C80 /* Particles.cpp */,
 				2F5477C51819BBFA00107C80 /* Particles.h */,
 				2F5477C61819BBFA00107C80 /* Texture.cpp */,

@@ -37,9 +37,12 @@ unsigned ProjectionMatrixUniformLocation = 0;
 unsigned ModelViewMatrixUniformLocation  = 0;
 unsigned NormalMatrixUniformLocation     = 0;
 unsigned textureUniformLocation1         = 0;		//Uniform Texture
+unsigned NormalMapUniformLocation = 0; // Normal map
+unsigned MVP3UniformLocation = 0; // A crippled 3x3 version of the model view matrix without the translation part
 
 Texture* g_texture1 = 0;
 Texture* g_texture2 = 0;
+Texture* normal_texture_earth = 0;
 
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[3] = { 0u };
@@ -85,7 +88,6 @@ void Draw(void)
 
     // Rotation
     float rotation = now*0.001;
-	glUniform1i(textureUniformLocation1, 0); //  Specify the value of text uniform variable for the current program object
 
 
     //////////////////////////////////////////////////////////////////////////
@@ -93,6 +95,7 @@ void Draw(void)
     glUseProgram(ShaderIds[0]);
     // bind VAO to load configuration 
     glBindVertexArray(BufferIds[0]);
+
 
     gloost::Matrix cameraTransform;
     cameraTransform.setIdentity();
@@ -118,6 +121,8 @@ void Draw(void)
         normalMatrix.invert();
         normalMatrix.transpose();
 
+        glUniform1i(textureUniformLocation1, 0); //  Specify the value of text uniform variable for the current program object
+        
         // transfer NormalMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
 
@@ -188,6 +193,8 @@ void SetupShader()
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
     textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");
+    NormalMapUniformLocation = glGetUniformLocation(ShaderIds[0],"NormalMap");
+    MVP3UniformLocation = glGetUniformLocation(ShaderIds[0],"MVP3");
 
 }
 
@@ -208,6 +215,7 @@ void LoadModel()
     mesh->takeReference();
 
     mesh->generateNormals();
+    mesh->generateTangentsBitangents();
 
     //normalizes the mesh
     mesh->scaleToSize(1.0);
@@ -268,6 +276,25 @@ void LoadModel()
                           GL_FLOAT, GL_FALSE,
                           mesh->getInterleavedInfo().interleavedPackageStride,
                           (GLvoid*)(mesh->getInterleavedInfo().interleavedTexcoordStride));
+    
+    glEnableVertexAttribArray(3);
+    
+    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
+    glVertexAttribPointer(3,
+                          GLOOST_MESH_NUM_COMPONENTS_TANGENTS,
+                          GL_FLOAT, GL_FALSE,
+                          mesh->getInterleavedInfo().interleavedPackageStride,
+                          (GLvoid*)(mesh->getInterleavedInfo().interleavedTangentStride));
+    
+    glEnableVertexAttribArray(4);
+    
+    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
+    glVertexAttribPointer(4,
+                          GLOOST_MESH_NUM_COMPONENTS_BITANGENTS,
+                          GL_FLOAT, GL_FALSE,
+                          mesh->getInterleavedInfo().interleavedPackageStride,
+                          (GLvoid*)(mesh->getInterleavedInfo().interleavedBitangentStride));
+    
 
     // the seceond VertexBufferObject ist bound
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, BufferIds[2]);
@@ -434,4 +461,5 @@ void Initialize(int argc, char* argv[])
     
     //Load jpg as texture
 	g_texture1 = new Texture("earth.jpg");
+    normal_texture_earth = new Texture("earth_normalmap.jpg");
 }

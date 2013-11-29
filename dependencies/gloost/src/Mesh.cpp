@@ -81,6 +81,8 @@ Mesh::Mesh():
   _supportedInterleavedComponents(GLOOST_BITMASK_ALL_UNSET),
   _interleavedInfo(),
   _indexRanges(),
+  _tangents(),
+  _bitangents(),
 //  _materials(new ObjMatFile()),
   _boundingBox()
 {
@@ -111,6 +113,8 @@ Mesh::Mesh(Mesh* mesh, bool interleave):
   _supportedInterleavedComponents(GLOOST_BITMASK_ALL_UNSET),
   _interleavedInfo(),
   _indexRanges(),
+    _tangents(),
+    _bitangents(),
   _boundingBox(mesh->_boundingBox.getPMin(), mesh->_boundingBox.getPMax())
 {
 
@@ -131,6 +135,8 @@ Mesh::Mesh(Mesh* mesh, bool interleave):
     _normals    = mesh->_normals;
     _colors     = mesh->_colors;
     _texCoords  = mesh->_texCoords;
+    _tangents   = mesh->_tangents;
+    _bitangents = mesh->_bitangents;
   }
 
   _points    = mesh->_points;
@@ -268,6 +274,16 @@ Mesh::interleave(bool clearComponentArraysAfterwards)
     {
       _texCoords.clear();
     }
+      if (_supportedInterleavedComponents.getFlag(GLOOST_MESH_TANGENTS))
+      {
+          _texCoords.clear();
+      }
+      
+      if (_supportedInterleavedComponents.getFlag(GLOOST_MESH_BITANGENTS))
+      {
+          _texCoords.clear();
+      }
+    
   }
 }
 
@@ -281,7 +297,7 @@ Mesh::interleave(bool clearComponentArraysAfterwards)
 */
 
 void
-Mesh::interleaveFromOtherMesh(Mesh* mesh)
+Mesh::interleaveFromOtherMesh(Mesh* mesh) //TODO
 {
 
   _supportedInterleavedComponents.setFlags(gloost::BitMask(GLOOST_BITMASK_ALL_SET), false);
@@ -309,6 +325,17 @@ Mesh::interleaveFromOtherMesh(Mesh* mesh)
     {
       setSupportedInterleavedAttribute(GLOOST_MESH_TEXCOORDS, true);
     }
+      
+    if (mesh->_vertices.size() == mesh->_tangents.size()){
+        setSupportedInterleavedAttribute(GLOOST_MESH_TANGENTS, true);
+
+    }
+      
+    if (mesh->_vertices.size() == mesh->_bitangents.size()){
+        setSupportedInterleavedAttribute(GLOOST_MESH_BITANGENTS, true);
+    }
+      
+      
 
     _interleavedAttributes.clear();
 
@@ -337,6 +364,19 @@ Mesh::interleaveFromOtherMesh(Mesh* mesh)
         _interleavedAttributes.push_back(mesh->_texCoords[i][0]);
         _interleavedAttributes.push_back(mesh->_texCoords[i][1]);
       }
+        if (_supportedInterleavedComponents.getFlag(GLOOST_MESH_TANGENTS))
+        {
+            _interleavedAttributes.push_back(mesh->_tangents[i][0]);
+            _interleavedAttributes.push_back(mesh->_tangents[i][1]);
+            _interleavedAttributes.push_back(mesh->_tangents[i][2]);
+
+        }
+        if (_supportedInterleavedComponents.getFlag(GLOOST_MESH_BITANGENTS))
+        {
+            _interleavedAttributes.push_back(mesh->_bitangents[i][0]);
+            _interleavedAttributes.push_back(mesh->_bitangents[i][1]);
+            _interleavedAttributes.push_back(mesh->_bitangents[i][2]);
+        }
     }
   }
 
@@ -1274,6 +1314,24 @@ Mesh::updateMeshInfo()
     componentStride += GLOOST_MESH_SIZEOF_TEXCOORD;
   }
 
+  if (isInterleavedAttributeSupported(GLOOST_MESH_TANGENTS))
+    {
+        _interleavedInfo.interleavedTangentOffset = componentOffset;
+        _interleavedInfo.interleavedTangentStride = componentStride;
+        
+        componentOffset += GLOOST_MESH_NUM_COMPONENTS_TANGENTS;
+        componentStride += GLOOST_MESH_SIZEOF_TANGENT;
+    }
+    
+    if (isInterleavedAttributeSupported(GLOOST_MESH_BITANGENTS))
+    {
+        _interleavedInfo.interleavedBitangentOffset = componentOffset;
+        _interleavedInfo.interleavedBitangentStride = componentStride;
+        
+        componentOffset += GLOOST_MESH_NUM_COMPONENTS_BITANGENTS;
+        componentStride += GLOOST_MESH_SIZEOF_BITANGENT;
+    }
+
   _interleavedInfo.interleavedPackageSize   = componentOffset;
   _interleavedInfo.interleavedPackageStride = componentStride;
 }
@@ -1325,7 +1383,37 @@ Mesh::printMeshInfo() const
 ////////////////////////////////////////////////////////////////////////////////
 
 
-
+void
+Mesh::generateTangentsBitangents() {
+    _tangents.clear();
+    _bitangents.clear();
+    
+    for(int i = 0; i < _vertices.size(); ++i){
+        gloost::Point3 &v0 = _vertices[i+0];
+        gloost::Point3 &v1 = _vertices[i+1];
+        gloost::Point3 &v2 = _vertices[i+2];
+        
+        // third component is zero for 2D textures
+        gloost::Point3 &uv0 = _texCoords[i+0];
+        gloost::Point3 &uv1 = _texCoords[i+1];
+        gloost::Point3 &uv2 = _texCoords[i+2];
+        
+        gloost::Point3 deltaPos1 = v1-v0;
+        gloost::Point3 deltaPos2 = v2-v0;
+        
+        gloost::Point3 deltaUV1 = uv1-uv0;
+        gloost::Point3 deltaUV2 = uv2-uv0;
+        
+        float r = 1.0f / (deltaUV1[0] * deltaUV2[1]-deltaUV1[1]*deltaUV2[0]);
+        gloost::Vector3 tangent = (deltaPos1*deltaUV2[1]-deltaPos2*deltaUV1[1])*r;
+        gloost::Vector3 bitangent = (deltaPos2 * deltaUV1[0] - deltaPos1 * deltaUV2[0])*r;
+        
+        _tangents.push_back(tangent);
+        _bitangents.push_back(bitangent);
+    }
+    
+    std::cout<<"generated "<<_tangents.size() << " tangents and " << _bitangents.size() << " bitangents" << std::endl;
+}
 
 
 } // namespace gloost

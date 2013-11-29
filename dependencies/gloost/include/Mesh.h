@@ -133,7 +133,8 @@ struct QuadFace
 #define GLOOST_MESH_NORMALS   1
 #define GLOOST_MESH_COLORS    2
 #define GLOOST_MESH_TEXCOORDS 3
-
+#define GLOOST_MESH_TANGENTS 4
+#define GLOOST_MESH_BITANGENTS 5
 //enum Mesh_interleavedComponents
 //{
 //  GLOOST_MESH_POSITIONS = 0,
@@ -153,19 +154,23 @@ enum Mesh_sizeof_Attributes
   GLOOST_MESH_SIZEOF_VERTEX   = 12,
   GLOOST_MESH_SIZEOF_NORMAL   = 12,
   GLOOST_MESH_SIZEOF_COLOR    = 16,
-  GLOOST_MESH_SIZEOF_TEXCOORD = 8
+  GLOOST_MESH_SIZEOF_TEXCOORD = 8,
+  GLOOST_MESH_SIZEOF_TANGENT   = 12,
+  GLOOST_MESH_SIZEOF_BITANGENT   = 12,
 };
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-  /// size of interleaved Mesh attributes (position, normal, color, texcoord) in bytes
+  /// number of components of interleaved Mesh attributes (position, normal, color, texcoord)
 
 #define  GLOOST_MESH_NUM_COMPONENTS_VERTEX   3
 #define  GLOOST_MESH_NUM_COMPONENTS_NORMAL   3
 #define  GLOOST_MESH_NUM_COMPONENTS_COLOR    4
 #define  GLOOST_MESH_NUM_COMPONENTS_TEXCOORD 2
+#define  GLOOST_MESH_NUM_COMPONENTS_TANGENTS 3
+#define  GLOOST_MESH_NUM_COMPONENTS_BITANGENTS 3
 
 
 
@@ -238,6 +243,13 @@ struct MeshInterleavedInfo
 
     interleavedTexcoordOffset = 0;
     interleavedTexcoordStride = 0;
+      
+    interleavedTangentOffset = 0;
+    interleavedTangentStride = 0;
+      
+    interleavedBitangentOffset = 0;
+    interleavedBitangentStride = 0;
+
   }
 
 
@@ -266,6 +278,16 @@ struct MeshInterleavedInfo
   unsigned interleavedTexcoordOffset;
   /// offset of the texcoord within a interleaved in bytes
   unsigned interleavedTexcoordStride;
+    
+    /// position of the texcoord within a interleaved package
+    unsigned interleavedTangentOffset;
+    /// offset of the texcoord within a interleaved in bytes
+    unsigned interleavedTangentStride;
+    
+    /// position of the texcoord within a interleaved package
+    unsigned interleavedBitangentOffset;
+    /// offset of the texcoord within a interleaved in bytes
+    unsigned interleavedBitangentStride;
 };
 
 
@@ -384,6 +406,7 @@ class Mesh : public SharedResource
     // Generates per vertex normals from face vertices
 	  void generateNormals();
 
+    void generateTangentsBitangents();
 
     // Centers the Mesh by altering vertex positons
     void center();
@@ -453,6 +476,10 @@ class Mesh : public SharedResource
     std::vector<TriangleFace> _triangles;
     /// vector of triangles
     std::vector<QuadFace>     _quads;
+    /// vector of tangents
+    std::vector<Vector3>      _tangents;
+    /// vector of normals
+    std::vector<Vector3>      _bitangents;
 
 
     // indicates supported vertex attributes within the interleaved structure
