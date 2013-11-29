@@ -74,9 +74,11 @@ void main(void)
     if(NdotL > 0.0)
     {
         //determine viewdirection
-        vec3 viewDir = normalize(eye_direction_cameraspace.xyz);
-        
+        vec3 viewDir = normalize(-eye_direction_cameraspace.xyz);
+
         // half direction as approximation
+        vec3 H = normalize(light_direction_cameraspace.xyz + viewDir);
+        vec3 H2 = normalize(H*combinedNormal);
         vec3 halfDir = normalize(light_direction_cameraspace.xyz + viewDir);
         
         //angle of specular light
@@ -91,12 +93,12 @@ void main(void)
     
     vec4 I_ambient = textureColor*k_a;
     vec4 I_diffus = k_d*NdotL*textureColor;
-   // vec4 I_specular = k_s*
+    //vec4 I_specular = textureColor*k_s*;
     
     //blend texture colors
     out_Color = I_ambient;
     out_Color += I_diffus;
-    //out_Color = I_a * k_a * textureColor + I_p * (k_d * NdotL + k_s * specular) * textureColor;
+    //out_Color += I_specular;
     
 
 }
