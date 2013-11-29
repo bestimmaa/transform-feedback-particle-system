@@ -5,7 +5,7 @@ uniform sampler2D normalMap;
 
 in  vec4 normal;
 in  vec4 position_cameraspace;
-in  vec4 direction;
+in  vec4 eye_direction_cameraspace;
 in  vec2 texcoord;
 
 
@@ -35,7 +35,7 @@ void main(void)
 
 
         vec3 normalizedNormal = normalize(normal.xyz);
-        vec3 viewDirection = normalize(direction.xyz);
+        vec3 viewDirection = normalize(eye_direction_cameraspace.xyz);
         vec3 lightDirection = normalize(lightPosition - position_cameraspace.xyz);
         vec3 reflectedLightDirection = reflect(-lightDirection, normalizedNormal);
 

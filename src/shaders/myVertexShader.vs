@@ -11,7 +11,7 @@ layout(location=4) in vec3 in_Bitangent;
 
 out vec4 normal;
 out vec4 position_cameraspace;
-out vec4 direction;
+out vec4 eye_direction_cameraspace;
 out vec2 texcoord;
 out vec4 tangent;
 out vec4 bitangent;
@@ -39,13 +39,15 @@ void main(void)
     tangent = vec4(normalize(in_Tangent), 0.0);
     bitangent = vec4(normalize(in_Bitangent), 0.0);;
     //invert the light position to obtain direction
-	direction = -position_cameraspace;
+	eye_direction_cameraspace = -position_cameraspace;
     //pass the texture coordinate for the vertex
 	texcoord = in_Texcoord;
     vec3 normal_cameraspace = MVP3*normalize(in_Normal);
     vec3 tangent_cameraspace = MVP3*normalize(in_Tangent);
     vec3 bitangent_cameraspace = MVP3*normalize(in_Bitangent);
     mat3 TBN = transpose(mat3(tangent_cameraspace,bitangent_cameraspace,normal_cameraspace));
+    
+    
     
     
 }
