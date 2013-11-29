@@ -39,6 +39,7 @@ unsigned NormalMatrixUniformLocation     = 0;
 unsigned textureUniformLocation1         = 0;		//Uniform Texture
 unsigned NormalMapUniformLocation = 0; // Normal map
 unsigned MVP3UniformLocation = 0; // A crippled 3x3 version of the model view matrix without the translation part
+unsigned LightPositionUniformLocation = 0;
 
 Texture* g_texture1 = 0;
 Texture* g_texture2 = 0;
@@ -105,6 +106,8 @@ void Draw(void)
     //reset the modelmatrix
     ModelViewMatrixStack.clear();
     ModelViewMatrixStack.loadMatrix(cameraTransform);
+    
+    glUniform4f(LightPositionUniformLocation,0,10,10,0);
 
     gloost::Matrix normalMatrix;
 
@@ -195,6 +198,7 @@ void SetupShader()
     textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");
     NormalMapUniformLocation = glGetUniformLocation(ShaderIds[0],"NormalMap");
     MVP3UniformLocation = glGetUniformLocation(ShaderIds[0],"MVP3");
+    LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
 
 }
 

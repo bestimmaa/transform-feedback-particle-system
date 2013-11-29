@@ -15,13 +15,15 @@ out vec4 eye_direction_cameraspace;
 out vec2 texcoord;
 out vec4 tangent;
 out vec4 bitangent;
+out vec4 light_direction_cameraspace;
 
 //Matrix Uniforms as specified with glUniformMatrix4fv. These matrices are the same for every vertex
 
 uniform mat4 ModelViewMatrix;
 uniform mat4 ProjectionMatrix;
 uniform mat4 NormalMatrix;
-uniform mat3 MVP3;
+uniform mat3 MVP3; // mvp matrix without translation part for transforming tangents?
+uniform vec4 LightPosition;
 
 
 
@@ -34,6 +36,8 @@ void main(void)
 	//calculate and set the position of the vertex
 	position_cameraspace = ModelViewMatrix * vertexPos;
 	gl_Position = ProjectionMatrix * position_cameraspace;
+    vec4 lightPosition_cameraspace = ModelViewMatrix * LightPosition;
+    light_direction_cameraspace = lightPosition_cameraspace + eye_direction_cameraspace;
     //transform the normal with the normal matrix (we can't use the modeviewmatrix for this)
 	normal      = NormalMatrix * vec4(normalize(in_Normal), 0.0);
     tangent = vec4(normalize(in_Tangent), 0.0);

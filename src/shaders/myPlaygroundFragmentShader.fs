@@ -6,6 +6,7 @@ uniform sampler2D normalMap;
 in  vec4 normal;
 in  vec4 position_cameraspace;
 in  vec4 eye_direction_cameraspace;
+in  vec4 light_direction_cameraspace;
 in  vec2 texcoord;
 
 
