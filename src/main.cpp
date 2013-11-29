@@ -34,6 +34,7 @@ int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
 unsigned FrameCount = 0;
 
 unsigned ProjectionMatrixUniformLocation = 0;
+unsigned ViewMatrixUniformLocation  = 0; // View Matrix - Comes in handy when transforming the light to cameraspace without using the model transformations
 unsigned ModelViewMatrixUniformLocation  = 0;
 unsigned NormalMatrixUniformLocation     = 0;
 unsigned textureUniformLocation1         = 0;		//Uniform Texture
@@ -106,7 +107,8 @@ void Draw(void)
     //reset the modelmatrix
     ModelViewMatrixStack.clear();
     ModelViewMatrixStack.loadMatrix(cameraTransform);
-    
+    // ATTENTION we use the modelviewmatrix
+    glUniformMatrix4fv(ViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
     glUniform4f(LightPositionUniformLocation,0,10,10,0);
 
     gloost::Matrix normalMatrix;
@@ -193,6 +195,7 @@ void SetupShader()
 
     //describes how the uniforms in the shaders are named and to which shader they belong
     ModelViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelViewMatrix");
+    ViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ViewMatrix");
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
     textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");

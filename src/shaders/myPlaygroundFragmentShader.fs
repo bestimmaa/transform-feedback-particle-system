@@ -4,9 +4,11 @@ uniform sampler2D colorMap;
 uniform sampler2D normalMap;
 
 in  vec4 normal;
-in  vec4 position_cameraspace;
+in  vec4 vertexPosition;
 in  vec4 eye_direction_cameraspace;
+in  vec4 eye_direction_tangentspace;
 in  vec4 light_direction_cameraspace;
+in  vec4 light_direction_tangentspace;
 in  vec2 texcoord;
 
 
@@ -29,7 +31,7 @@ void main(void)
         out_Color = color * AmbientFactor; // set the color to the color of the texture at the corresponding texture coordinate and aspply the ambient factor
 
         
-        vec3 vertexToLightVector =  normalize(lightPosition - position_cameraspace.xyz);
+        vec3 vertexToLightVector =  normalize(lightPosition - vertexPosition.xyz);
         float DiffuseFactor = clamp(dot(normal.xyz, vertexToLightVector), 0.0, 1.0);
 
         out_Color = out_Color +  color*DiffuseFactor; // apply diffuse term to color
@@ -37,7 +39,7 @@ void main(void)
 
         vec3 normalizedNormal = normalize(normal.xyz);
         vec3 viewDirection = normalize(eye_direction_cameraspace.xyz);
-        vec3 lightDirection = normalize(lightPosition - position_cameraspace.xyz);
+        vec3 lightDirection = normalize(lightPosition - vertexPosition.xyz);
         vec3 reflectedLightDirection = reflect(-lightDirection, normalizedNormal);
 
         int phongReflectionRadius = 90; // radius of the phong reflections
