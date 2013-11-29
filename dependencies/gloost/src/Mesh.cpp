@@ -1387,24 +1387,32 @@ void
 Mesh::generateTangentsBitangents() {
     _tangents.clear();
     _bitangents.clear();
+    normalizeNormals();
     
     for(int i = 0; i < _vertices.size(); ++i){
         gloost::Point3 &v0 = _vertices[i+0];
         gloost::Point3 &v1 = _vertices[i+1];
         gloost::Point3 &v2 = _vertices[i+2];
         
+
+        
         // third component is zero for 2D textures
         gloost::Point3 &uv0 = _texCoords[i+0];
         gloost::Point3 &uv1 = _texCoords[i+1];
         gloost::Point3 &uv2 = _texCoords[i+2];
         
-        gloost::Point3 deltaPos1 = v1-v0;
-        gloost::Point3 deltaPos2 = v2-v0;
+
         
-        gloost::Point3 deltaUV1 = uv1-uv0;
-        gloost::Point3 deltaUV2 = uv2-uv0;
+        gloost::Vector3 deltaPos1 = v1-v0;
+        gloost::Vector3 deltaPos2 = v2-v0;
         
-        float r = 1.0f / (deltaUV1[0] * deltaUV2[1]-deltaUV1[1]*deltaUV2[0]);
+        
+        gloost::Vector2 deltaUV1 = gloost::Vector2(uv1[0]-uv0[0],uv1[1]-uv0[1]);
+        gloost::Vector2 deltaUV2 = gloost::Vector2(uv2[0]-uv0[0],uv2[1]-uv0[1]);;
+        
+        // meh
+        float r = 1.0f / (deltaUV1[0] * deltaUV2[1]- deltaUV1[1]*deltaUV2[0]);
+        
         gloost::Vector3 tangent = (deltaPos1*deltaUV2[1]-deltaPos2*deltaUV1[1])*r;
         gloost::Vector3 bitangent = (deltaPos2 * deltaUV1[0] - deltaPos1 * deltaUV2[0])*r;
         

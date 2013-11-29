@@ -15,6 +15,7 @@
 #include <gloostMath.h>
 #include <gloostGlUtil.h>
 #include "Shader.h"
+#include <glErrorUtil.h>
 
 // include gloost::Mesh wich is a geometry container
 #include <Mesh.h>
@@ -34,6 +35,7 @@ int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
 unsigned FrameCount = 0;
 
 unsigned ProjectionMatrixUniformLocation = 0;
+unsigned ModelMatrixUniformLocation  = 0;
 unsigned ViewMatrixUniformLocation  = 0; // View Matrix - Comes in handy when transforming the light to cameraspace without using the model transformations
 unsigned ModelViewMatrixUniformLocation  = 0;
 unsigned NormalMatrixUniformLocation     = 0;
@@ -86,6 +88,7 @@ int main(int argc, char* argv[])
 //called every frame this functions draw
 void Draw(void)
 {
+
     int now = glutGet(GLUT_ELAPSED_TIME);
 
     // Rotation
@@ -107,20 +110,34 @@ void Draw(void)
     //reset the modelmatrix
     ModelViewMatrixStack.clear();
     ModelViewMatrixStack.loadMatrix(cameraTransform);
+    
+    gloost::Matrix viewMatrix = ModelViewMatrixStack.top();
     // ATTENTION we use the modelviewmatrix
     glUniformMatrix4fv(ViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
-    glUniform4f(LightPositionUniformLocation,0,10,10,0);
+    glUniform4f(LightPositionUniformLocation,0,100,10,0);
 
     gloost::Matrix normalMatrix;
 
     //save the current transformation onto the MatrixStack
     ModelViewMatrixStack.push();
     {
+        // create a copy of top matrix element
+        ModelViewMatrixStack.push();
+        gloost::Matrix modelMatrix;
+        modelMatrix.setIdentity();
+        // reset the copy to identy
+        ModelViewMatrixStack.loadIdentity();
+        // store translations for model
         ModelViewMatrixStack.translate(0, 0, 0);
         ModelViewMatrixStack.rotate(rotation, 0.0, 1.0, 0);
+        ModelViewMatrixStack.scale(3.0);
+        modelMatrix = ModelViewMatrixStack.top();
+        // pop model matrix from stack
+        ModelViewMatrixStack.pop();
+        ModelViewMatrixStack.multMatrix(modelMatrix);
         // transfer ModelViewMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
-
+        glUniformMatrix4fv(ModelMatrixUniformLocation,1,GL_FALSE, modelMatrix.data());
         //set the NormalMatrix for Geometry 1
         normalMatrix = ModelViewMatrixStack.top();
         normalMatrix.invert();
@@ -130,7 +147,6 @@ void Draw(void)
         
         // transfer NormalMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
-
         //bind the Geometry
         glBindVertexArray(BufferIds[0]);
         
@@ -180,6 +196,7 @@ void RenderFunction(void)
 
 void SetupShader()
 {
+
     // LOAD AND LINK SHADER
     ShaderIds[0] = glCreateProgram();
     {
@@ -192,16 +209,20 @@ void SetupShader()
         glAttachShader(ShaderIds[0], ShaderIds[2]);
     }
     glLinkProgram(ShaderIds[0]);
+    std::cout << "Max uniforms: " << GL_MAX_VERTEX_UNIFORM_COMPONENTS << std::endl;
+    
+    CheckErrorsGL("BEFORE\nXXXXXXXXXXXXX\n");
 
     //describes how the uniforms in the shaders are named and to which shader they belong
     ModelViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelViewMatrix");
+    ModelMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelMatrix");
     ViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ViewMatrix");
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
     textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");
     NormalMapUniformLocation = glGetUniformLocation(ShaderIds[0],"NormalMap");
-    MVP3UniformLocation = glGetUniformLocation(ShaderIds[0],"MVP3");
     LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
+    CheckErrorsGL("AFTER\nXXXXXXXXXXXXX\n");
 
 }
 
@@ -313,6 +334,8 @@ void LoadModel()
 
     // unbind the VertexArray - Scope ends
     glBindVertexArray(0);
+    
+
 
 }
 
