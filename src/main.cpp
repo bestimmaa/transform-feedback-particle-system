@@ -77,7 +77,8 @@ int main(int argc, char* argv[])
 {
 	std::cout << std::string(argv[0]);
 	Initialize(argc, argv);
-    glutMainLoop();
+    
+    
 
     exit(EXIT_SUCCESS);
 }
@@ -89,79 +90,7 @@ int main(int argc, char* argv[])
 void Draw(void)
 {
 
-    int now = glutGet(GLUT_ELAPSED_TIME);
 
-    // Rotation
-    float rotation = now*0.001;
-
-
-    //////////////////////////////////////////////////////////////////////////
-
-    glUseProgram(ShaderIds[0]);
-    // bind VAO to load configuration 
-    glBindVertexArray(BufferIds[0]);
-
-
-    gloost::Matrix cameraTransform;
-    cameraTransform.setIdentity();
-    cameraTransform.setTranslate(0.0,0.0,4.0);
-    cameraTransform.invert();
-
-    //reset the modelmatrix
-    ModelViewMatrixStack.clear();
-    ModelViewMatrixStack.loadMatrix(cameraTransform);
-    
-    gloost::Matrix viewMatrix = ModelViewMatrixStack.top();
-    // ATTENTION we use the modelviewmatrix
-    glUniformMatrix4fv(ViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
-    glUniform4f(LightPositionUniformLocation,0,100,10,0);
-
-    gloost::Matrix normalMatrix;
-
-    //save the current transformation onto the MatrixStack
-    ModelViewMatrixStack.push();
-    {
-        // create a copy of top matrix element
-        ModelViewMatrixStack.push();
-        gloost::Matrix modelMatrix;
-        modelMatrix.setIdentity();
-        // reset the copy to identy
-        ModelViewMatrixStack.loadIdentity();
-        // store translations for model
-        ModelViewMatrixStack.translate(0, 0, 0);
-        ModelViewMatrixStack.rotate(rotation, 0.0, 1.0, 0);
-        ModelViewMatrixStack.scale(3.0);
-        modelMatrix = ModelViewMatrixStack.top();
-        // pop model matrix from stack
-        ModelViewMatrixStack.pop();
-        ModelViewMatrixStack.multMatrix(modelMatrix);
-        // transfer ModelViewMatrix for Geometry 1 to Shaders
-        glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
-        glUniformMatrix4fv(ModelMatrixUniformLocation,1,GL_FALSE, modelMatrix.data());
-        //set the NormalMatrix for Geometry 1
-        normalMatrix = ModelViewMatrixStack.top();
-        normalMatrix.invert();
-        normalMatrix.transpose();
-
-        glUniform1i(textureUniformLocation1, 0); //  Specify the value of text uniform variable for the current program object
-        
-        // transfer NormalMatrix for Geometry 1 to Shaders
-        glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
-        //bind the Geometry
-        glBindVertexArray(BufferIds[0]);
-        
-        g_texture1->bind();
-
-        // draw Geometry 1
-        glDrawElements(GL_TRIANGLES, mesh->getTriangles().size()*3, GL_UNSIGNED_INT, 0);
-
-    }
-    
-    //load last transformation from stack
-    ModelViewMatrixStack.pop();
-
-    glBindVertexArray(0);
-    glUseProgram(0);
 }
 
 
@@ -197,32 +126,7 @@ void RenderFunction(void)
 void SetupShader()
 {
 
-    // LOAD AND LINK SHADER
-    ShaderIds[0] = glCreateProgram();
-    {
-        //takes a (shader) filename and a shader-type and returns and id of the compiled shader
-        ShaderIds[1] = Shader::loadShader("myVertexShader.vs", GL_VERTEX_SHADER);
-        ShaderIds[2] = Shader::loadShader("myPlaygroundFragmentShader.fs", GL_FRAGMENT_SHADER);
 
-        //attaches a shader to a program
-        glAttachShader(ShaderIds[0], ShaderIds[1]);
-        glAttachShader(ShaderIds[0], ShaderIds[2]);
-    }
-    glLinkProgram(ShaderIds[0]);
-    std::cout << "Max uniforms: " << GL_MAX_VERTEX_UNIFORM_COMPONENTS << std::endl;
-    
-    CheckErrorsGL("BEFORE\nXXXXXXXXXXXXX\n");
-
-    //describes how the uniforms in the shaders are named and to which shader they belong
-    ModelViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelViewMatrix");
-    ModelMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelMatrix");
-    ViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ViewMatrix");
-    ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
-    NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
-    textureUniformLocation1         = glGetUniformLocation(ShaderIds[0], "colorMap");
-    NormalMapUniformLocation = glGetUniformLocation(ShaderIds[0],"NormalMap");
-    LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
-    CheckErrorsGL("AFTER\nXXXXXXXXXXXXX\n");
 
 }
 
@@ -233,107 +137,7 @@ void SetupShader()
 void LoadModel()
 {
 
-    //load a wavefront *.obj file
-    gloost::ObjLoader loader("sphere.obj");
-    mesh = loader.getMesh();
 
-    //IMPORTANT: use this to increase the reference counter
-    //gloost::meshes have a garbage collector which throws
-    //the mesh away otherwise
-    mesh->takeReference();
-
-    mesh->generateNormals();
-    mesh->generateTangentsBitangents();
-
-    //normalizes the mesh
-    mesh->scaleToSize(1.0);
-    //puts the meshdata in one array
-    mesh->interleave();
-
-    //mesh->printMeshInfo();
-
-    //create VAO which holds the state of our Vertex Attributes and VertexBufferObjects - a control structure
-    //note: for different objects more of these are needed
-    glGenVertexArrays(1, &BufferIds[0]);
-
-    //bind Vertex Array - Scope begins
-    glBindVertexArray(BufferIds[0]);
-
-    //Create two VertexBufferObject and bind the first one to set its data
-    glGenBuffers(2, &BufferIds[1]);
-    glBindBuffer(GL_ARRAY_BUFFER, BufferIds[1]);
-
-    //set the vertex data for the actual buffer; the second parameter is the size in bytes of all Vertices together
-    //the third parameter is a pointer to the vertexdata
-    glBufferData(GL_ARRAY_BUFFER,
-                 sizeof(float) * mesh->getInterleavedAttributes().size(),
-                 &mesh->getInterleavedAttributes().front(),
-                 GL_STATIC_DRAW);
-
-    //enables a VertexAttributePointer for position 0
-    //the shader can reference this as layout(location=0)
-    glEnableVertexAttribArray(0);
-
-    //specifies where in the GL_ARRAY_BUFFER our data(the vertex position) is exactly
-    //(index,size,type,normalized,stride = byte offset between vertices in buffer,pointer = offset to the first component of vertex attribute);
-    glVertexAttribPointer(0,
-                          GLOOST_MESH_NUM_COMPONENTS_VERTEX,
-                          GL_FLOAT,
-                          GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,
-                          (GLvoid*)(mesh->getInterleavedInfo().interleavedVertexStride));
-
-    //enables a VertexAttributePointer for position 1
-    //the shader can reference this as layout(location=1)
-    glEnableVertexAttribArray(1);
-
-    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
-    glVertexAttribPointer(1,
-                          GLOOST_MESH_NUM_COMPONENTS_NORMAL,
-                          GL_FLOAT, GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,
-                          (GLvoid*)(mesh->getInterleavedInfo().interleavedNormalStride));
-    
-    // load texture data (myVertexShader: layout(location=2) in vec2 in_Texcoord)
-    
-	glEnableVertexAttribArray(2);
-    
-	//specifies where in the GL_ARRAY_BUFFER our data(the texture coordinates) is exactly
-	glVertexAttribPointer(2,
-                          GLOOST_MESH_NUM_COMPONENTS_TEXCOORD,
-                          GL_FLOAT, GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,
-                          (GLvoid*)(mesh->getInterleavedInfo().interleavedTexcoordStride));
-    
-    glEnableVertexAttribArray(3);
-    
-    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
-    glVertexAttribPointer(3,
-                          GLOOST_MESH_NUM_COMPONENTS_TANGENTS,
-                          GL_FLOAT, GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,
-                          (GLvoid*)(mesh->getInterleavedInfo().interleavedTangentStride));
-    
-    glEnableVertexAttribArray(4);
-    
-    //specifies where in the GL_ARRAY_BUFFER our data(the vertex normal) is exactly
-    glVertexAttribPointer(4,
-                          GLOOST_MESH_NUM_COMPONENTS_BITANGENTS,
-                          GL_FLOAT, GL_FALSE,
-                          mesh->getInterleavedInfo().interleavedPackageStride,
-                          (GLvoid*)(mesh->getInterleavedInfo().interleavedBitangentStride));
-    
-
-    // the seceond VertexBufferObject ist bound
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, BufferIds[2]);
-    // its data are the indices of the vertices
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                 sizeof(gloost::TriangleFace) * mesh->getTriangles().size(),
-                 &mesh->getTriangles().front(),
-                 GL_STATIC_DRAW);
-
-    // unbind the VertexArray - Scope ends
-    glBindVertexArray(0);
     
 
 
@@ -345,14 +149,7 @@ void LoadModel()
 
 void Cleanup()
 {
-    glDetachShader(ShaderIds[0], ShaderIds[1]);
-    glDetachShader(ShaderIds[0], ShaderIds[2]);
-    glDeleteShader(ShaderIds[1]);
-    glDeleteShader(ShaderIds[2]);
-    glDeleteProgram(ShaderIds[0]);
 
-    glDeleteBuffers(2, &BufferIds[1]);
-    glDeleteVertexArrays(1, &BufferIds[0]);
 }
 
 
@@ -478,18 +275,4 @@ void Initialize(int argc, char* argv[])
             );
 
     glGetError();
-    glClearColor(0.20f, 0.2f, 0.2f, 0.0f);
-
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-
-    ModelViewMatrixStack.loadIdentity();
-    ProjectionMatrix.setIdentity();
-
-    SetupShader();
-    LoadModel();
-    
-    //Load jpg as texture
-	g_texture1 = new Texture("earth.jpg");
-    normal_texture_earth = new Texture("earth_normalmap.jpg");
 }

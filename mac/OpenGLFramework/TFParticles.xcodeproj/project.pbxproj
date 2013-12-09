@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F418B871812C5F10002F7D1 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F418B861812C5F10002F7D1 /* libGLEW.dylib */; };
-		2F5477BC1819B6E100107C80 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
 		2F5477BE1819B71B00107C80 /* libfreeimage-3.15.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5477BD1819B71B00107C80 /* libfreeimage-3.15.4.dylib */; };
 		2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C41819BBFA00107C80 /* Particles.cpp */; };
 		2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F5477C61819BBFA00107C80 /* Texture.cpp */; };
@@ -19,6 +18,7 @@
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
 		2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96E4571812E5DA001770D5 /* GLUT.framework */; };
+		2FAD029E185672DC006A18EF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
 		2FEC712F181321BC00561692 /* sphere.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712E181321B300561692 /* sphere.obj */; };
 		2FEC7130181321BE00561692 /* sphere.mtl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712D181321B300561692 /* sphere.mtl */; };
 		2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FED3297181A9D0D00120BE0 /* earth.jpg */; };
@@ -90,7 +90,7 @@
 		2FEC712D181321B300561692 /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		2FEC712E181321B300561692 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		2FED3297181A9D0D00120BE0 /* earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpg; sourceTree = "<group>"; };
-		2FF7E8F717F8738200B42EA9 /* OpenGLFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLFramework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FF7E8F717F8738200B42EA9 /* TFParticles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TFParticles; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF7E90317F8738E00B42EA9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,7 @@
 		2FF7E8F817F8738200B42EA9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2FF7E8F717F8738200B42EA9 /* OpenGLFramework */,
+				2FF7E8F717F8738200B42EA9 /* TFParticles */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,9 +207,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2FF7E8F617F8738200B42EA9 /* OpenGLFramework */ = {
+		2FF7E8F617F8738200B42EA9 /* TFParticles */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2FF7E90017F8738200B42EA9 /* Build configuration list for PBXNativeTarget "OpenGLFramework" */;
+			buildConfigurationList = 2FF7E90017F8738200B42EA9 /* Build configuration list for PBXNativeTarget "TFParticles" */;
 			buildPhases = (
 				2FF7E8F317F8738200B42EA9 /* Sources */,
 				2FF7E8F417F8738200B42EA9 /* Frameworks */,
@@ -220,9 +220,9 @@
 			dependencies = (
 				2FED329B181A9D8200120BE0 /* PBXTargetDependency */,
 			);
-			name = OpenGLFramework;
+			name = TFParticles;
 			productName = OpenGLFramework;
-			productReference = 2FF7E8F717F8738200B42EA9 /* OpenGLFramework */;
+			productReference = 2FF7E8F717F8738200B42EA9 /* TFParticles */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -234,7 +234,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Christoph Halang";
 			};
-			buildConfigurationList = 2FF7E8F217F8738200B42EA9 /* Build configuration list for PBXProject "OpenGLFramework" */;
+			buildConfigurationList = 2FF7E8F217F8738200B42EA9 /* Build configuration list for PBXProject "TFParticles" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -252,7 +252,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				2FF7E8F617F8738200B42EA9 /* OpenGLFramework */,
+				2FF7E8F617F8738200B42EA9 /* TFParticles */,
 			);
 		};
 /* End PBXProject section */
@@ -273,9 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F5477C91819BBFA00107C80 /* Particles.cpp in Sources */,
-				2F5477BC1819B6E100107C80 /* main.cpp in Sources */,
 				2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */,
 				2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */,
+				2FAD029E185672DC006A18EF /* main.cpp in Sources */,
 				2F5477CA1819BBFA00107C80 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,7 +372,7 @@
 					/usr/local/lib,
 					/usr/local/Cellar/freeimage/3.15.4/lib,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TFParticles;
 			};
 			name = Debug;
 		};
@@ -389,14 +389,14 @@
 					/usr/local/lib,
 					/usr/local/Cellar/freeimage/3.15.4/lib,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TFParticles;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FF7E8F217F8738200B42EA9 /* Build configuration list for PBXProject "OpenGLFramework" */ = {
+		2FF7E8F217F8738200B42EA9 /* Build configuration list for PBXProject "TFParticles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2FF7E8FE17F8738200B42EA9 /* Debug */,
@@ -405,7 +405,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2FF7E90017F8738200B42EA9 /* Build configuration list for PBXNativeTarget "OpenGLFramework" */ = {
+		2FF7E90017F8738200B42EA9 /* Build configuration list for PBXNativeTarget "TFParticles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2FF7E90117F8738200B42EA9 /* Debug */,
