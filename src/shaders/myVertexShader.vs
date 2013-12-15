@@ -15,6 +15,8 @@ uniform vec4 LightPosition;
 
 void main(void)
 {
-	gl_Position = vec4(in_Position,0);
+    vec4 vertexPosition_modelspace = vec4(in_Position, 1.0);
+	vertexPosition = (ViewMatrix * ModelMatrix) * vertexPosition_modelspace;
+	gl_Position = ProjectionMatrix * vertexPosition;
 
 }

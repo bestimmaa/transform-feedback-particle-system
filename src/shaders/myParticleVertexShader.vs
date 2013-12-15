@@ -7,5 +7,5 @@ out vec3 out_Position;
 
 void main(void)
 {
-    out_Position = in_Position+vec3(0,-0.0001,0);
+    out_Position = in_Position+vec3(0,-0.01,0);
 }

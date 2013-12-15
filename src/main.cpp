@@ -36,8 +36,10 @@ unsigned ShaderIds[5] = { 0u };
 
 GLuint tbo;
 GLint inputAttrib;
+GLint inputAttribParticleShading;
 GLuint vbo;
 GLuint vao;
+GLuint vao2;
 
 
 //the three different matrices for projection, viewing and model transforming
@@ -78,14 +80,13 @@ int main(int argc, char* argv[])
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-//called every frame this functions draw
-void Draw(void)
-{
-
+void SimulateParticles(void){
+    // PARTICLE SIMULATION
+    
     glUseProgram(ShaderIds[3]);
     
     glBindVertexArray(vao);
-
+    
     // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo);
@@ -93,22 +94,92 @@ void Draw(void)
     glDrawArrays(GL_POINTS, 0, 5);
     glEndTransformFeedback();
     glFlush();
+    glDisable(GL_RASTERIZER_DISCARD);
 
     // copy back from vertex buffer
     Particle feedback[5];
     glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, sizeof(feedback), feedback);
     printf("%f %f %f\n", feedback[0].x, feedback[0].y, feedback[0].z);
-    
-    // set output as new input buffer
-    glBindBuffer(GL_ARRAY_BUFFER,vbo);
-    glBufferData(GL_ARRAY_BUFFER,sizeof(feedback),feedback,GL_STATIC_DRAW);
-    
     glBindVertexArray(0);
 
+    glBindVertexArray(vao2);
+    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(feedback),feedback,GL_STATIC_DRAW);
+    glBindVertexArray(0);
     
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0, 0, 0, 1);
+    CheckErrorsGL("ERROR while simulating particles");
     
+
+}
+
+//called every frame this functions draw
+void Draw(void)
+{
+
+    glPointSize(20);
+    
+    // DRAWING
+    
+    glUseProgram(ShaderIds[0]);
+    glBindVertexArray(vao2);
+
+    gloost::Matrix cameraTransform;
+    cameraTransform.setIdentity();
+    cameraTransform.setTranslate(0.0,0.0,4.0);
+    cameraTransform.invert();
+    
+    //reset the modelmatrix
+    ModelViewMatrixStack.clear();
+    ModelViewMatrixStack.loadMatrix(cameraTransform);
+    
+    gloost::Matrix viewMatrix = ModelViewMatrixStack.top();
+    // ATTENTION we use the modelviewmatrix
+    glUniformMatrix4fv(ViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
+    glUniform4f(LightPositionUniformLocation,20,30,10,1);
+    
+    //save the current transformation onto the MatrixStack
+    ModelViewMatrixStack.push();
+    {
+        // create a copy of top matrix element
+        ModelViewMatrixStack.push();
+        gloost::Matrix modelMatrix;
+        modelMatrix.setIdentity();
+        // reset the copy to identy
+        ModelViewMatrixStack.loadIdentity();
+        // store translations for model
+        ModelViewMatrixStack.translate(0, 0, 0);
+        modelMatrix = ModelViewMatrixStack.top();
+        // pop model matrix from stack
+        ModelViewMatrixStack.pop();
+        ModelViewMatrixStack.multMatrix(modelMatrix);
+        
+        // transfer ModelViewMatrix for Geometry 1 to Shaders
+        glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
+        glUniformMatrix4fv(ModelMatrixUniformLocation,1,GL_FALSE, modelMatrix.data());
+
+        //set the NormalMatrix for Geometry 1
+        gloost::Matrix normalMatrix;
+        normalMatrix = ModelViewMatrixStack.top();
+        normalMatrix.invert();
+        normalMatrix.transpose();
+        
+        
+        // transfer NormalMatrix for Geometry 1 to Shaders
+        glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
+        //bind the Geometry
+        glBindBuffer(GL_ARRAY_BUFFER,vbo);
+
+        // draw Geometry 1
+        glDrawArrays(GL_POINTS, 0, 5);
+        CheckErrorsGL("ERROR while drawing");
+
+        
+    }
+    
+    //load last transformation from stack
+    ModelViewMatrixStack.pop();
+    
+    glBindVertexArray(0);
 
 
 
@@ -131,6 +202,8 @@ void TimerFunction(int value){
 void RenderFunction(void)
 {
     ++FrameCount;
+    
+    SimulateParticles();
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -216,9 +289,26 @@ void LoadModel()
     glBufferData(GL_ARRAY_BUFFER,sizeof(data),nullptr,GL_STATIC_READ);
     
     glBindVertexArray(0);
-
-
     
+    CheckErrorsGL("ERROR after creating vao1!");
+
+
+    glGenVertexArrays(1, &vao2);
+    glBindVertexArray(vao2);
+    
+    // bind particle buffer
+    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+
+    // Setup vertex shader input
+    inputAttribParticleShading = glGetAttribLocation(ShaderIds[0],"in_Position");
+    glEnableVertexAttribArray(inputAttribParticleShading);
+    glVertexAttribPointer(inputAttribParticleShading,3,GL_FLOAT,GL_FALSE,0,0);
+    
+    glBindVertexArray(0);
+    
+    CheckErrorsGL("ERROR after creating vao2!");
+
+
 }
 
 
@@ -370,4 +460,5 @@ void Initialize(int argc, char* argv[])
     
     SetupShader();
     LoadModel();
+    
 }
