@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2FF7E8F617F8738200B42EA9"
-               BuildableName = "OpenGLFramework"
+               BuildableName = "TFParticles"
                BlueprintName = "TFParticles"
                ReferencedContainer = "container:TFParticles.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FF7E8F617F8738200B42EA9"
-            BuildableName = "OpenGLFramework"
+            BuildableName = "TFParticles"
             BlueprintName = "TFParticles"
             ReferencedContainer = "container:TFParticles.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FF7E8F617F8738200B42EA9"
-            BuildableName = "OpenGLFramework"
+            BuildableName = "TFParticles"
             BlueprintName = "TFParticles"
             ReferencedContainer = "container:TFParticles.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FF7E8F617F8738200B42EA9"
-            BuildableName = "OpenGLFramework"
+            BuildableName = "TFParticles"
             BlueprintName = "TFParticles"
             ReferencedContainer = "container:TFParticles.xcodeproj">
          </BuildableReference>

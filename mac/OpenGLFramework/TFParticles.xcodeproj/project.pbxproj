@@ -14,14 +14,11 @@
 		2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CE1819BC8700107C80 /* myVertexShader.vs */; };
 		2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */; };
 		2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */; };
-		2F6176791848244800ABFB8C /* earth_normalmap.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F6176781848244500ABFB8C /* earth_normalmap.jpg */; };
 		2F96E44E1812E4C3001770D5 /* model_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E43C1812E4C3001770D5 /* model_obj.cpp */; };
 		2F96E44F1812E4C3001770D5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E4481812E4C3001770D5 /* Shader.cpp */; };
 		2F96E4581812E5DA001770D5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96E4571812E5DA001770D5 /* GLUT.framework */; };
 		2FAD029E185672DC006A18EF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F96E44D1812E4C3001770D5 /* main.cpp */; };
-		2FEC712F181321BC00561692 /* sphere.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712E181321B300561692 /* sphere.obj */; };
-		2FEC7130181321BE00561692 /* sphere.mtl in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FEC712D181321B300561692 /* sphere.mtl */; };
-		2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FED3297181A9D0D00120BE0 /* earth.jpg */; };
+		2FAD02A118567F3B006A18EF /* myParticleVertexShader.vs in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FAD02A018567F08006A18EF /* myParticleVertexShader.vs */; };
 		2FED329C181A9DBC00120BE0 /* libgloost.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F30819818141D1000F81220 /* libgloost.dylib */; };
 		2FF7E90417F8738E00B42EA9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF7E90317F8738E00B42EA9 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
@@ -50,13 +47,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				2F6176791848244800ABFB8C /* earth_normalmap.jpg in CopyFiles */,
-				2FED3299181A9D1400120BE0 /* earth.jpg in CopyFiles */,
 				2F5477D41819C30100107C80 /* myParticleFragmentShader.fs in CopyFiles */,
 				2F5477D21819C2E800107C80 /* myVertexShader.vs in CopyFiles */,
+				2FAD02A118567F3B006A18EF /* myParticleVertexShader.vs in CopyFiles */,
 				2F5477D31819C2ED00107C80 /* myPlaygroundFragmentShader.fs in CopyFiles */,
-				2FEC7130181321BE00561692 /* sphere.mtl in CopyFiles */,
-				2FEC712F181321BC00561692 /* sphere.obj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +74,7 @@
 		2F96E4491812E4C3001770D5 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		2F96E44D1812E4C3001770D5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2F96E4571812E5DA001770D5 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		2FAD02A018567F08006A18EF /* myParticleVertexShader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = myParticleVertexShader.vs; sourceTree = "<group>"; };
 		2FEC7126181321B300561692 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = box.obj; sourceTree = "<group>"; };
 		2FEC7127181321B300561692 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
 		2FEC7128181321B300561692 /* cessna.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cessna.obj; sourceTree = "<group>"; };
@@ -154,6 +149,7 @@
 				2F5477CC1819BC8700107C80 /* myParticleFragmentShader.fs */,
 				2F5477CD1819BC8700107C80 /* myPlaygroundFragmentShader.fs */,
 				2F5477CE1819BC8700107C80 /* myVertexShader.vs */,
+				2FAD02A018567F08006A18EF /* myParticleVertexShader.vs */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
