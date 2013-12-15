@@ -199,13 +199,10 @@ void LoadModel()
     glBindBuffer(GL_ARRAY_BUFFER,vbo);
     glBufferData(GL_ARRAY_BUFFER,sizeof(data),data,GL_STATIC_DRAW);
 
-    // Setup vertex shader input ERROR GL_INVALID_OPERATION
+    // Setup vertex shader input
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Position");
-
     glEnableVertexAttribArray(inputAttrib);
     glVertexAttribPointer(inputAttrib,1,GL_FLOAT,GL_FALSE,0,0);
-    
-
     
     // Create vertex buffer object (vbo) to hold feedback
     glGenBuffers(1,&tbo);
