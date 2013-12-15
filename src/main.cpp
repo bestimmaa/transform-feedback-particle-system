@@ -86,6 +86,7 @@ void Draw(void)
     
     glBindVertexArray(vao);
 
+    // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo);
     glBeginTransformFeedback(GL_POINTS);
@@ -93,9 +94,14 @@ void Draw(void)
     glEndTransformFeedback();
     glFlush();
 
-    float feedback[5];
+    // copy back from vertex buffer
+    Particle feedback[5];
     glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, sizeof(feedback), feedback);
-    printf("%f %f %f\n", feedback[0], feedback[1], feedback[2]);
+    printf("%f %f %f\n", feedback[0].x, feedback[0].y, feedback[0].z);
+    
+    // set output as new input buffer
+    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(feedback),feedback,GL_STATIC_DRAW);
     
     glBindVertexArray(0);
 
@@ -193,7 +199,7 @@ void LoadModel()
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     
-    float data[] = {1.0,2.0,3.0,5.0,4.0};
+    Particle data[] = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
     
     glGenBuffers(1,&vbo);
     glBindBuffer(GL_ARRAY_BUFFER,vbo);
@@ -202,7 +208,7 @@ void LoadModel()
     // Setup vertex shader input
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Position");
     glEnableVertexAttribArray(inputAttrib);
-    glVertexAttribPointer(inputAttrib,1,GL_FLOAT,GL_FALSE,0,0);
+    glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,0,0);
     
     // Create vertex buffer object (vbo) to hold feedback
     glGenBuffers(1,&tbo);
