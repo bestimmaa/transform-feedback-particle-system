@@ -166,9 +166,6 @@ void Draw(void)
         
         // transfer NormalMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
-        //bind the Geometry
-        glBindBuffer(GL_ARRAY_BUFFER,vbo);
-
         // draw Geometry 1
         glDrawArrays(GL_POINTS, 0, 5);
         CheckErrorsGL("ERROR while drawing");
