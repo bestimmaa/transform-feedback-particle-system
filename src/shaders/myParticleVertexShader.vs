@@ -17,10 +17,11 @@ float rand(float f) {
 
 void main(void)
 {
-    out_Position = in_Position+in_Velocity*0.01;
+    vec3 gravity = vec3(0,-1,0);
+    out_Position = in_Position+(in_Velocity)+(gravity);
     out_Velocity = in_Velocity*0.999;
     out_Age = in_Age+1;
-    if (out_Age > 1000) {
+    if (out_Age > 5000) {
         out_Position = vec3(0.0,0.0,0.0);
         out_Age = 0;
         out_Velocity = vec3(0.0,1.0,0.0);

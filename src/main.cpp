@@ -133,7 +133,7 @@ void Draw(void)
 
     gloost::Matrix cameraTransform;
     cameraTransform.setIdentity();
-    cameraTransform.setTranslate(0.0,0.0,4.0);
+    cameraTransform.setTranslate(0.0,0.0,11.0);
     cameraTransform.invert();
     
     int viewport[4];

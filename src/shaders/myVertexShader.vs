@@ -23,6 +23,6 @@ void main(void)
     float dist = length(vertexPosition_modelspace.xyz - eye);
 	vertexPosition = (ViewMatrix * ModelMatrix) * vertexPosition_modelspace;
 	gl_Position = ProjectionMatrix * vertexPosition;
-    gl_PointSize = dist*0.1;
+    gl_PointSize = dist*0.01;
 
 }
