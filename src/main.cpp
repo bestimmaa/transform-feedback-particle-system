@@ -17,7 +17,8 @@
 #include "Shader.h"
 #include <glErrorUtil.h>
 
-#define PARTICLE_COUNT 5
+#define PARTICLE_COUNT 150000
+#define FOV 60.0
 
 int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
 
@@ -31,8 +32,8 @@ unsigned NormalMatrixUniformLocation     = 0;
 unsigned textureUniformLocation1         = 0;		//Uniform Texture
 unsigned NormalMapUniformLocation = 0; // Normal map
 unsigned LightPositionUniformLocation = 0;
-
-unsigned TimeUniformLocation = 0;
+unsigned HeightNearPlaneUniformLocation = 0;
+unsigned RandomUniformLocation = 0;
 
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[5] = { 0u };
@@ -75,6 +76,7 @@ struct Particle {
 
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
 	std::cout << std::string(argv[0]);
 	Initialize(argc, argv);
     glutMainLoop();
@@ -88,12 +90,13 @@ int main(int argc, char* argv[])
 void SimulateParticles(void){
     // PARTICLE SIMULATION
     
-    int now = glutGet(GLUT_ELAPSED_TIME);
+   // int now = glutGet(GLUT_ELAPSED_TIME);
     
     glUseProgram(ShaderIds[3]);
     
     glBindVertexArray(vao);
-  //  glUniform1i(TimeUniformLocation,now);
+    float r = (float)rand()/RAND_MAX;
+    glUniform1f(RandomUniformLocation,r);
     
     // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
@@ -108,7 +111,7 @@ void SimulateParticles(void){
     Particle feedback[PARTICLE_COUNT];
     glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, sizeof(feedback), feedback);
     for (int i = 0; i < PARTICLE_COUNT; ++i) {
-        printf("Particle %d %f %f %f %f %f %f %d \n", i,feedback[i].x, feedback[i].y, feedback[i].z, feedback[i].velocityX, feedback[i].velocityY, feedback[i].velocityZ, feedback[i].age);
+        //printf("Particle %d %f %f %f %f %f %f %d \n", i,feedback[i].x, feedback[i].y, feedback[i].z, feedback[i].velocityX, feedback[i].velocityY, feedback[i].velocityZ, feedback[i].age);
     }
 
     glBindVertexArray(0);
@@ -119,16 +122,11 @@ void SimulateParticles(void){
     glBindVertexArray(0);
     
     CheckErrorsGL("ERROR while simulating particles");
-    
-
 }
 
 //called every frame this functions draw
 void Draw(void)
 {
-
-    glPointSize(20);
-    
     // DRAWING
     glUseProgram(ShaderIds[0]);
     glBindVertexArray(vao2);
@@ -137,6 +135,12 @@ void Draw(void)
     cameraTransform.setIdentity();
     cameraTransform.setTranslate(0.0,0.0,4.0);
     cameraTransform.invert();
+    
+    int viewport[4];
+    glGetIntegerv(GL_VIEWPORT,viewport);
+    float heightOfNearPlane = (float)abs(viewport[3]-viewport[1]) / (2*tan(0.5*FOV*M_PI/180.0));
+    //std::cout<<heightOfNearPlane<<"\n";
+    glUniform1f(HeightNearPlaneUniformLocation,heightOfNearPlane);
     
     //reset the modelmatrix
     ModelViewMatrixStack.clear();
@@ -263,8 +267,8 @@ void SetupShader()
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
     LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
-    TimeUniformLocation = glGetUniformLocation(ShaderIds[3],"Time");
-
+    RandomUniformLocation = glGetUniformLocation(ShaderIds[3],"Random");
+    HeightNearPlaneUniformLocation = glGetUniformLocation(ShaderIds[3],"HeightOfNearPlane");
     
 }
 
@@ -280,13 +284,19 @@ void LoadModel()
     
     Particle data[PARTICLE_COUNT];
     for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        float r = (float)rand()/RAND_MAX;
+        r = r-0.5;
         Particle p;
         p.x = 0.0;
-        p.y = 0.0;
+        p.y = -2.0;
         p.z = 0.0;
-        p.velocityX = 0.0;
-        p.velocityY = 1.0;
-        p.velocityZ = 0.0;
+        p.velocityX = r;
+        r = (float)rand()/RAND_MAX;
+        r = r-0.5;
+        p.velocityY = 1.0+(r*0.5);
+        r = (float)rand()/RAND_MAX;
+        r = r-0.5;
+        p.velocityZ = r;
         p.age = 0;
         data[i]=p;
     }
@@ -373,7 +383,7 @@ void ResizeFunction(int Width, int Height)
     glViewport(0, 0, CurrentWidth, CurrentHeight);
     
     gloost::gloostPerspective(ProjectionMatrix,
-                              60.0f,
+                              FOV,
                               (float)CurrentWidth / CurrentHeight,
                               1.0f,
                               100.0f
@@ -480,6 +490,8 @@ void Initialize(int argc, char* argv[])
     
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    // enables setting of point size in vertex shader
+    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     
     ModelViewMatrixStack.loadIdentity();
     ProjectionMatrix.setIdentity();
