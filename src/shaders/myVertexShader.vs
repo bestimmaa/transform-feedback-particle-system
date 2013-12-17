@@ -2,7 +2,9 @@
 
 
 
-layout(location=0) in vec3 in_Position;
+in vec3 in_Position;
+in vec3 in_Velocity;
+in int in_Age;
 out vec4 vertexPosition;
 
 //Matrix Uniforms as specified with glUniformMatrix4fv. These matrices are the same for every vertex

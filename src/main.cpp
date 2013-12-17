@@ -17,6 +17,7 @@
 #include "Shader.h"
 #include <glErrorUtil.h>
 
+#define PARTICLE_COUNT 5
 
 int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
 
@@ -31,12 +32,12 @@ unsigned textureUniformLocation1         = 0;		//Uniform Texture
 unsigned NormalMapUniformLocation = 0; // Normal map
 unsigned LightPositionUniformLocation = 0;
 
+unsigned TimeUniformLocation = 0;
+
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[5] = { 0u };
 
 GLuint tbo;
-GLint inputAttrib;
-GLint inputAttribParticleShading;
 GLuint vbo;
 GLuint vao;
 GLuint vao2;
@@ -66,6 +67,10 @@ struct Particle {
     float x;
     float y;
     float z;
+    float velocityX;
+    float velocityY;
+    float velocityZ;
+    int age;
 };
 
 int main(int argc, char* argv[])
@@ -83,27 +88,33 @@ int main(int argc, char* argv[])
 void SimulateParticles(void){
     // PARTICLE SIMULATION
     
+    int now = glutGet(GLUT_ELAPSED_TIME);
+    
     glUseProgram(ShaderIds[3]);
     
     glBindVertexArray(vao);
+  //  glUniform1i(TimeUniformLocation,now);
     
     // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo);
     glBeginTransformFeedback(GL_POINTS);
-    glDrawArrays(GL_POINTS, 0, 5);
+    glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
     glEndTransformFeedback();
     glFlush();
     glDisable(GL_RASTERIZER_DISCARD);
 
     // copy back from vertex buffer
-    Particle feedback[5];
+    Particle feedback[PARTICLE_COUNT];
     glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, sizeof(feedback), feedback);
-    printf("%f %f %f\n", feedback[0].x, feedback[0].y, feedback[0].z);
+    for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        printf("Particle %d %f %f %f %f %f %f %d \n", i,feedback[i].x, feedback[i].y, feedback[i].z, feedback[i].velocityX, feedback[i].velocityY, feedback[i].velocityZ, feedback[i].age);
+    }
+
     glBindVertexArray(0);
 
     glBindVertexArray(vao2);
-    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+    //glBindBuffer(GL_ARRAY_BUFFER,vbo);
     glBufferData(GL_ARRAY_BUFFER,sizeof(feedback),feedback,GL_STATIC_DRAW);
     glBindVertexArray(0);
     
@@ -119,7 +130,6 @@ void Draw(void)
     glPointSize(20);
     
     // DRAWING
-    
     glUseProgram(ShaderIds[0]);
     glBindVertexArray(vao2);
 
@@ -163,11 +173,10 @@ void Draw(void)
         normalMatrix.invert();
         normalMatrix.transpose();
         
-        
         // transfer NormalMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
         // draw Geometry 1
-        glDrawArrays(GL_POINTS, 0, 5);
+        glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
         CheckErrorsGL("ERROR while drawing");
 
         
@@ -239,8 +248,8 @@ void SetupShader()
         glAttachShader(ShaderIds[3], ShaderIds[4]);
     }
     
-    const GLchar* feedbackVarying[] = {"out_Position"};
-    glTransformFeedbackVaryings(ShaderIds[3],1,feedbackVarying,GL_INTERLEAVED_ATTRIBS);
+    const GLchar* feedbackVarying[] = {"out_Position","out_Velocity","out_Age"};
+    glTransformFeedbackVaryings(ShaderIds[3],3,feedbackVarying,GL_INTERLEAVED_ATTRIBS);
     
     glLinkProgram(ShaderIds[3]);
     
@@ -254,7 +263,7 @@ void SetupShader()
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
     NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
     LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
-    
+    TimeUniformLocation = glGetUniformLocation(ShaderIds[3],"Time");
 
     
 }
@@ -269,16 +278,37 @@ void LoadModel()
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     
-    Particle data[] = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
+    Particle data[PARTICLE_COUNT];
+    for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        Particle p;
+        p.x = 0.0;
+        p.y = 0.0;
+        p.z = 0.0;
+        p.velocityX = 0.0;
+        p.velocityY = 1.0;
+        p.velocityZ = 0.0;
+        p.age = 0;
+        data[i]=p;
+    }
     
     glGenBuffers(1,&vbo);
     glBindBuffer(GL_ARRAY_BUFFER,vbo);
     glBufferData(GL_ARRAY_BUFFER,sizeof(data),data,GL_STATIC_DRAW);
 
     // Setup vertex shader input
+    GLint inputAttrib;
+    
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Position");
     glEnableVertexAttribArray(inputAttrib);
-    glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,0,0);
+    glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,sizeof(float)*6+sizeof(int),0);
+    
+    inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Velocity");
+    glEnableVertexAttribArray(inputAttrib);
+    glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,sizeof(float)*6+sizeof(int),(GLvoid*)(sizeof(int)*3));
+    
+    inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Age");
+    glEnableVertexAttribArray(inputAttrib);
+    glVertexAttribIPointer(inputAttrib,1,GL_INT,sizeof(float)*6+sizeof(int),(GLvoid*)(sizeof(int)*6));
     
     // Create vertex buffer object (vbo) to hold feedback
     glGenBuffers(1,&tbo);
@@ -289,21 +319,20 @@ void LoadModel()
     
     CheckErrorsGL("ERROR after creating vao1!");
 
-
     glGenVertexArrays(1, &vao2);
     glBindVertexArray(vao2);
-    
+
     // bind particle buffer
     glBindBuffer(GL_ARRAY_BUFFER,vbo);
 
     // Setup vertex shader input
+    GLint inputAttribParticleShading;
     inputAttribParticleShading = glGetAttribLocation(ShaderIds[0],"in_Position");
     glEnableVertexAttribArray(inputAttribParticleShading);
-    glVertexAttribPointer(inputAttribParticleShading,3,GL_FLOAT,GL_FALSE,0,0);
+    glVertexAttribPointer(inputAttribParticleShading,3,GL_FLOAT,GL_FALSE,(sizeof(float)*6)+sizeof(int),0);
     
     glBindVertexArray(0);
     
-    CheckErrorsGL("ERROR after creating vao2!");
 
 
 }
