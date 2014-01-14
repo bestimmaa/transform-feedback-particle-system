@@ -17,7 +17,7 @@
 #include "Shader.h"
 #include <glErrorUtil.h>
 
-#define PARTICLE_COUNT 150000
+#define PARTICLE_COUNT 200000
 #define FOV 60.0
 
 int CurrentWidth = 800, CurrentHeight = 600, WindowHandle = 0;
@@ -38,10 +38,12 @@ unsigned RandomUniformLocation = 0;
 unsigned BufferIds[6] = { 0u };
 unsigned ShaderIds[5] = { 0u };
 
-GLuint tbo;
-GLuint vbo;
 GLuint vao;
 GLuint vao2;
+
+unsigned particleBufferA;
+unsigned particleBufferB;
+
 
 
 //the three different matrices for projection, viewing and model transforming
@@ -100,27 +102,25 @@ void SimulateParticles(void){
     
     // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
-    glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, tbo);
+    glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, particleBufferB);
     glBeginTransformFeedback(GL_POINTS);
     glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
     glEndTransformFeedback();
+    glBindBuffer(GL_ARRAY_BUFFER,0);
     glFlush();
     glDisable(GL_RASTERIZER_DISCARD);
-
-    // copy back from vertex buffer
+    std::swap(particleBufferA, particleBufferB);
+    
+    
+    /*
+    // copy back from vertex buffer for debug output
     Particle feedback[PARTICLE_COUNT];
     glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, sizeof(feedback), feedback);
     for (int i = 0; i < PARTICLE_COUNT; ++i) {
-        //printf("Particle %d %f %f %f %f %f %f %d \n", i,feedback[i].x, feedback[i].y, feedback[i].z, feedback[i].velocityX, feedback[i].velocityY, feedback[i].velocityZ, feedback[i].age);
-    }
+        printf("Particle %d:  %f %f %f - %f %f %f - %d \n", i,feedback[i].x, feedback[i].y, feedback[i].z, feedback[i].velocityX, feedback[i].velocityY, feedback[i].velocityZ, feedback[i].age);
+    }*/
 
     glBindVertexArray(0);
-
-    glBindVertexArray(vao2);
-    //glBindBuffer(GL_ARRAY_BUFFER,vbo);
-    glBufferData(GL_ARRAY_BUFFER,sizeof(feedback),feedback,GL_STATIC_DRAW);
-    glBindVertexArray(0);
-    
     CheckErrorsGL("ERROR while simulating particles");
 }
 
@@ -301,10 +301,18 @@ void LoadModel()
         data[i]=p;
     }
     
-    glGenBuffers(1,&vbo);
-    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+    glGenBuffers(1,&particleBufferA);
+    glBindBuffer(GL_ARRAY_BUFFER,particleBufferA);
     glBufferData(GL_ARRAY_BUFFER,sizeof(data),data,GL_STATIC_DRAW);
+    
+    glGenBuffers(1,&particleBufferB);
+    glBindBuffer(GL_ARRAY_BUFFER,particleBufferB);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(data),nullptr,GL_STATIC_DRAW);
 
+    // We bind buffer A again to set the VertexAttribArray for it
+    // The buffer A and B are swapped after every frame so we don't need to setup the VertexAttribArray for Buffer B
+    glBindBuffer(GL_ARRAY_BUFFER,particleBufferA);
+    
     // Setup vertex shader input
     GLint inputAttrib;
     
@@ -320,22 +328,19 @@ void LoadModel()
     glEnableVertexAttribArray(inputAttrib);
     glVertexAttribIPointer(inputAttrib,1,GL_INT,sizeof(float)*6+sizeof(int),(GLvoid*)(sizeof(int)*6));
     
-    // Create vertex buffer object (vbo) to hold feedback
-    glGenBuffers(1,&tbo);
-    glBindBuffer(GL_ARRAY_BUFFER,tbo);
-    glBufferData(GL_ARRAY_BUFFER,sizeof(data),nullptr,GL_STATIC_READ);
-    
     glBindVertexArray(0);
     
     CheckErrorsGL("ERROR after creating vao1!");
+    
+    
 
     glGenVertexArrays(1, &vao2);
     glBindVertexArray(vao2);
 
-    // bind particle buffer
-    glBindBuffer(GL_ARRAY_BUFFER,vbo);
+    // bind particle buffer for rendering
+    glBindBuffer(GL_ARRAY_BUFFER,particleBufferA);
 
-    // Setup vertex shader input
+    // Setup vertex shader input, we're only passing the position at the moment
     GLint inputAttribParticleShading;
     inputAttribParticleShading = glGetAttribLocation(ShaderIds[0],"in_Position");
     glEnableVertexAttribArray(inputAttribParticleShading);
@@ -343,6 +348,7 @@ void LoadModel()
     
     glBindVertexArray(0);
     
+    CheckErrorsGL("ERROR after creating vao2!");
 
 
 }
