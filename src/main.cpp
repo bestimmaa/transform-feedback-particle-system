@@ -28,11 +28,6 @@ unsigned ProjectionMatrixUniformLocation = 0;
 unsigned ModelMatrixUniformLocation  = 0;
 unsigned ViewMatrixUniformLocation  = 0; // View Matrix - Comes in handy when transforming the light to cameraspace without using the model transformations
 unsigned ModelViewMatrixUniformLocation  = 0;
-unsigned NormalMatrixUniformLocation     = 0;
-unsigned textureUniformLocation1         = 0;		//Uniform Texture
-unsigned NormalMapUniformLocation = 0; // Normal map
-unsigned LightPositionUniformLocation = 0;
-unsigned HeightNearPlaneUniformLocation = 0;
 unsigned RandomUniformLocation = 0;
 
 unsigned BufferIds[6] = { 0u };
@@ -82,7 +77,7 @@ int main(int argc, char* argv[])
 	std::cout << std::string(argv[0]);
 	Initialize(argc, argv);
     glutMainLoop();
-    
+
     exit(EXIT_SUCCESS);
 }
 
@@ -91,15 +86,15 @@ int main(int argc, char* argv[])
 
 void SimulateParticles(void){
     // PARTICLE SIMULATION
-    
+
    // int now = glutGet(GLUT_ELAPSED_TIME);
-    
+
     glUseProgram(ShaderIds[3]);
-    
+
     glBindVertexArray(vao);
     float r = (float)rand()/RAND_MAX;
     glUniform1f(RandomUniformLocation,r);
-    
+
     // transform particle position on vertex shader
     glEnable(GL_RASTERIZER_DISCARD);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, particleBufferB);
@@ -110,8 +105,8 @@ void SimulateParticles(void){
     glFlush();
     glDisable(GL_RASTERIZER_DISCARD);
     std::swap(particleBufferA, particleBufferB);
-    
-    
+
+
     /*
     // copy back from vertex buffer for debug output
     Particle feedback[PARTICLE_COUNT];
@@ -135,22 +130,15 @@ void Draw(void)
     cameraTransform.setIdentity();
     cameraTransform.setTranslate(0.0,0.0,11.0);
     cameraTransform.invert();
-    
-    int viewport[4];
-    glGetIntegerv(GL_VIEWPORT,viewport);
-    float heightOfNearPlane = (float)abs(viewport[3]-viewport[1]) / (2*tan(0.5*FOV*M_PI/180.0));
-    //std::cout<<heightOfNearPlane<<"\n";
-    glUniform1f(HeightNearPlaneUniformLocation,heightOfNearPlane);
-    
+
     //reset the modelmatrix
     ModelViewMatrixStack.clear();
     ModelViewMatrixStack.loadMatrix(cameraTransform);
-    
+
     gloost::Matrix viewMatrix = ModelViewMatrixStack.top();
     // ATTENTION we use the modelviewmatrix
     glUniformMatrix4fv(ViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
-    glUniform4f(LightPositionUniformLocation,20,30,10,1);
-    
+
     //save the current transformation onto the MatrixStack
     ModelViewMatrixStack.push();
     {
@@ -166,7 +154,7 @@ void Draw(void)
         // pop model matrix from stack
         ModelViewMatrixStack.pop();
         ModelViewMatrixStack.multMatrix(modelMatrix);
-        
+
         // transfer ModelViewMatrix for Geometry 1 to Shaders
         glUniformMatrix4fv(ModelViewMatrixUniformLocation, 1, GL_FALSE, ModelViewMatrixStack.top().data());
         glUniformMatrix4fv(ModelMatrixUniformLocation,1,GL_FALSE, modelMatrix.data());
@@ -176,19 +164,17 @@ void Draw(void)
         normalMatrix = ModelViewMatrixStack.top();
         normalMatrix.invert();
         normalMatrix.transpose();
-        
-        // transfer NormalMatrix for Geometry 1 to Shaders
-        glUniformMatrix4fv(NormalMatrixUniformLocation, 1, GL_FALSE, normalMatrix.data());
+
         // draw Geometry 1
         glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
         CheckErrorsGL("ERROR while drawing");
 
-        
+
     }
-    
+
     //load last transformation from stack
     ModelViewMatrixStack.pop();
-    
+
     glBindVertexArray(0);
 
 
@@ -202,7 +188,7 @@ void TimerFunction(int value){
     {
         int fps = FrameCount * 4;
         glutSetWindowTitle( (gloost::toString(fps) + " fps").c_str());
-        
+
     }
     FrameCount = 0;
 	glutTimerFunc(250, TimerFunction, 1);
@@ -212,13 +198,13 @@ void TimerFunction(int value){
 void RenderFunction(void)
 {
     ++FrameCount;
-    
+
     SimulateParticles();
-    
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     Draw();
-    
+
     glutSwapBuffers();
     glutPostRedisplay();
 }
@@ -229,34 +215,34 @@ void RenderFunction(void)
 
 void SetupShader()
 {
-    
+
     // LOAD AND LINK SHADER
     ShaderIds[0] = glCreateProgram();
     {
         //takes a (shader) filename and a shader-type and returns and id of the compiled shader
         ShaderIds[1] = Shader::loadShader("myVertexShader.vs", GL_VERTEX_SHADER);
         ShaderIds[2] = Shader::loadShader("myPlaygroundFragmentShader.fs", GL_FRAGMENT_SHADER);
-        
+
         //attaches a shader to a program
         glAttachShader(ShaderIds[0], ShaderIds[1]);
         glAttachShader(ShaderIds[0], ShaderIds[2]);
     }
     glLinkProgram(ShaderIds[0]);
-    
+
     CheckErrorsGL("ERROR after linking program 1!");
 
-    
+
     ShaderIds[3] = glCreateProgram();
     {
         ShaderIds[4] = Shader::loadShader("myParticleVertexShader.vs", GL_VERTEX_SHADER);
         glAttachShader(ShaderIds[3], ShaderIds[4]);
     }
-    
+
     const GLchar* feedbackVarying[] = {"out_Position","out_Velocity","out_Age"};
     glTransformFeedbackVaryings(ShaderIds[3],3,feedbackVarying,GL_INTERLEAVED_ATTRIBS);
-    
+
     glLinkProgram(ShaderIds[3]);
-    
+
     CheckErrorsGL("ERROR after linking program 2!");
 
 
@@ -265,11 +251,7 @@ void SetupShader()
     ModelMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ModelMatrix");
     ViewMatrixUniformLocation  = glGetUniformLocation(ShaderIds[0], "ViewMatrix");
     ProjectionMatrixUniformLocation = glGetUniformLocation(ShaderIds[0], "ProjectionMatrix");
-    NormalMatrixUniformLocation     = glGetUniformLocation(ShaderIds[0], "NormalMatrix");
-    LightPositionUniformLocation = glGetUniformLocation(ShaderIds[0],"LightPosition");
     RandomUniformLocation = glGetUniformLocation(ShaderIds[3],"Random");
-    HeightNearPlaneUniformLocation = glGetUniformLocation(ShaderIds[3],"HeightOfNearPlane");
-    
 }
 
 
@@ -281,7 +263,7 @@ void LoadModel()
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
-    
+
     Particle data[PARTICLE_COUNT];
     for (int i = 0; i < PARTICLE_COUNT; ++i) {
         float r = (float)rand()/RAND_MAX;
@@ -300,39 +282,39 @@ void LoadModel()
         p.age = 0;
         data[i]=p;
     }
-    
+
     glGenBuffers(1,&particleBufferA);
     glBindBuffer(GL_ARRAY_BUFFER,particleBufferA);
     glBufferData(GL_ARRAY_BUFFER,sizeof(data),data,GL_STATIC_DRAW);
-    
+
     glGenBuffers(1,&particleBufferB);
     glBindBuffer(GL_ARRAY_BUFFER,particleBufferB);
-    glBufferData(GL_ARRAY_BUFFER,sizeof(data),nullptr,GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(data),0,GL_STATIC_DRAW);
 
     // We bind buffer A again to set the VertexAttribArray for it
     // The buffer A and B are swapped after every frame so we don't need to setup the VertexAttribArray for Buffer B
     glBindBuffer(GL_ARRAY_BUFFER,particleBufferA);
-    
+
     // Setup vertex shader input
     GLint inputAttrib;
-    
+
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Position");
     glEnableVertexAttribArray(inputAttrib);
     glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,sizeof(float)*6+sizeof(int),0);
-    
+
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Velocity");
     glEnableVertexAttribArray(inputAttrib);
     glVertexAttribPointer(inputAttrib,3,GL_FLOAT,GL_FALSE,sizeof(float)*6+sizeof(int),(GLvoid*)(sizeof(int)*3));
-    
+
     inputAttrib = glGetAttribLocation(ShaderIds[3],"in_Age");
     glEnableVertexAttribArray(inputAttrib);
     glVertexAttribIPointer(inputAttrib,1,GL_INT,sizeof(float)*6+sizeof(int),(GLvoid*)(sizeof(int)*6));
-    
+
     glBindVertexArray(0);
-    
+
     CheckErrorsGL("ERROR after creating vao1!");
-    
-    
+
+
 
     glGenVertexArrays(1, &vao2);
     glBindVertexArray(vao2);
@@ -345,9 +327,9 @@ void LoadModel()
     inputAttribParticleShading = glGetAttribLocation(ShaderIds[0],"in_Position");
     glEnableVertexAttribArray(inputAttribParticleShading);
     glVertexAttribPointer(inputAttribParticleShading,3,GL_FLOAT,GL_FALSE,(sizeof(float)*6)+sizeof(int),0);
-    
+
     glBindVertexArray(0);
-    
+
     CheckErrorsGL("ERROR after creating vao2!");
 
 
@@ -364,7 +346,7 @@ void Cleanup()
     glDeleteShader(ShaderIds[1]);
     glDeleteShader(ShaderIds[2]);
     glDeleteProgram(ShaderIds[0]);
-    
+
     glDeleteBuffers(2, &BufferIds[1]);
     glDeleteVertexArrays(1, &BufferIds[0]);
 }
@@ -387,14 +369,14 @@ void ResizeFunction(int Width, int Height)
     CurrentWidth = Width;
     CurrentHeight = Height;
     glViewport(0, 0, CurrentWidth, CurrentHeight);
-    
+
     gloost::gloostPerspective(ProjectionMatrix,
                               FOV,
                               (float)CurrentWidth / CurrentHeight,
                               1.0f,
                               100.0f
                               );
-    
+
     glUseProgram(ShaderIds[0]);
     glUniformMatrix4fv(ProjectionMatrixUniformLocation, 1, GL_FALSE, ProjectionMatrix.data());
     glUseProgram(0);
@@ -406,33 +388,33 @@ void ResizeFunction(int Width, int Height)
 
 void InitWindow(int argc, char* argv[])
 {
-    
+
     glutInit(&argc, argv);
     glutInitWindowSize(CurrentWidth, CurrentHeight);
-    
+
 #ifdef __APPLE__
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA | GLUT_3_2_CORE_PROFILE );
-    
+
 #else
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    
+
     glutInitContextVersion(3,2);
     glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
     glutInitContextProfile(GLUT_CORE_PROFILE);
-    
+
     glutSetOption(
                   GLUT_ACTION_ON_WINDOW_CLOSE,
                   GLUT_ACTION_GLUTMAINLOOP_RETURNS
                   );
 #endif
-    
+
     WindowHandle = glutCreateWindow("");
-    
+
     std::printf("%s\n%s\n",
                 glGetString(GL_RENDERER),  // e.g. Intel HD Graphics 3000 OpenGL Engine
                 glGetString(GL_VERSION)    // e.g. 3.2 INTEL-8.0.61
                 );
-    
+
     if(WindowHandle < 1)
     {
         fprintf(
@@ -445,7 +427,7 @@ void InitWindow(int argc, char* argv[])
         glutExit();
 #endif
     }
-    
+
     //Glut function callbacks
     //TODO: add keyboard and mouse functions
     glutTimerFunc(0, TimerFunction, 0);
@@ -456,8 +438,8 @@ void InitWindow(int argc, char* argv[])
 #else
     glutCloseFunc(Cleanup);
 #endif
-    
-    
+
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -465,12 +447,12 @@ void InitWindow(int argc, char* argv[])
 void Initialize(int argc, char* argv[])
 {
     GLenum GlewInitResult;
-    
+
     InitWindow(argc, argv);
-    
+
     glewExperimental = GL_TRUE;
     GlewInitResult = glewInit();
-    
+
     if (GLEW_OK != GlewInitResult)
     {
         fprintf(
@@ -484,25 +466,25 @@ void Initialize(int argc, char* argv[])
         glutExit();
 #endif
     }
-    
+
     fprintf(
             stdout,
             "INFO: OpenGL Version: %s\n",
             glGetString(GL_VERSION)
             );
-    
+
     glGetError();
     glClearColor(0.20f, 0.2f, 0.2f, 0.0f);
-    
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     // enables setting of point size in vertex shader
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-    
+
     ModelViewMatrixStack.loadIdentity();
     ProjectionMatrix.setIdentity();
-    
+
     SetupShader();
     LoadModel();
-    
+
 }

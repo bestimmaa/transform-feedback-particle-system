@@ -1,5 +1,4 @@
 #!/bin/sh
-cp ../../src/shaders/simpleFragmentShader.fs ../../build/simpleFragmentShader.fs
-cp ../../src/shaders/simpleVertexShader.vs ../../build/simpleVertexShader.vs
-cp ../../objects/sphere.obj ../../build/sphere.obj
-cp ../../objects/sphere.mtl ../../build/sphere.mtl
+cp ../../src/shaders/myPlaygroundFragmentShader.fs ../../build/myPlaygroundFragmentShader.fs
+cp ../../src/shaders/myVertexShader.vs ../../build/myVertexShader.vs
+cp ../../src/shaders/myParticleVertexShader.vs ../../build/myParticleVertexShader.vs

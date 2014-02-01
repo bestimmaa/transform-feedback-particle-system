@@ -64,7 +64,6 @@ OF SUCH DAMAGE.
 
 #include <glErrorUtil.h>
 #include "GL/glew.h"
-
 #ifndef NDEBUG
 void CheckErrorsGL(const char* location, std::ostream& ostr)
 {
