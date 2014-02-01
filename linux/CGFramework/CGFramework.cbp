@@ -22,6 +22,7 @@
 					<Add library="libglut" />
 					<Add library="libfreeimage" />
 					<Add library="libgloost" />
+					<Add library="libGLU" />
 					<Add directory="../../dependencies/gloost/lib" />
 				</Linker>
 				<ExtraCommands>
@@ -45,11 +46,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../../dependencies/gloost/include/glErrorUtil.h" />
+		<Unit filename="../../dependencies/gloost/src/glErrorUtil.cpp" />
 		<Unit filename="../../src/Shader.cpp" />
 		<Unit filename="../../src/Shader.h" />
 		<Unit filename="../../src/main.cpp" />
-		<Unit filename="../../src/model_obj.cpp" />
-		<Unit filename="../../src/model_obj.h" />
+		<Unit filename="../../src/shaders/myParticleFragmentShader.fs" />
+		<Unit filename="../../src/shaders/myParticleVertexShader.vs" />
+		<Unit filename="../../src/shaders/myPlaygroundFragmentShader.fs" />
+		<Unit filename="../../src/shaders/myVertexShader.vs" />
 		<Extensions>
 			<code_completion />
 			<debugger />

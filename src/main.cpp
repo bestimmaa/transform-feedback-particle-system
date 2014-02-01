@@ -99,6 +99,7 @@ void SimulateParticles(void){
     glEnable(GL_RASTERIZER_DISCARD);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, particleBufferB);
     glBeginTransformFeedback(GL_POINTS);
+    // TODO crash on linux?!
     glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
     glEndTransformFeedback();
     glBindBuffer(GL_ARRAY_BUFFER,0);
@@ -289,7 +290,7 @@ void LoadModel()
 
     glGenBuffers(1,&particleBufferB);
     glBindBuffer(GL_ARRAY_BUFFER,particleBufferB);
-    glBufferData(GL_ARRAY_BUFFER,sizeof(data),0,GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(data),NULL,GL_STATIC_DRAW);
 
     // We bind buffer A again to set the VertexAttribArray for it
     // The buffer A and B are swapped after every frame so we don't need to setup the VertexAttribArray for Buffer B
