@@ -11,10 +11,6 @@ out int out_Age;
 
 uniform float Random;
 
-float rand(float f) {
-    return fract(456.789*sin(789.123*f*Random)*(1.+f));
-}
-
 void main(void)
 {
     vec3 gravity = vec3(0,-1,0);

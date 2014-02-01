@@ -10,11 +10,7 @@ out vec4 vertexPosition;
 //Matrix Uniforms as specified with glUniformMatrix4fv. These matrices are the same for every vertex
 uniform mat4 ViewMatrix;
 uniform mat4 ModelMatrix;
-uniform mat4 ModelViewMatrix;
 uniform mat4 ProjectionMatrix;
-uniform mat4 NormalMatrix;
-uniform vec4 LightPosition;
-uniform float heightOfNearPlane;
 
 void main(void)
 {
